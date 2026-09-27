@@ -5,7 +5,6 @@ import { Song } from '@/types';
 import { Search, Music, Play, Sparkles, ChevronLeft, ChevronRight, X, ArrowUpDown } from 'lucide-react';
 import { getCapoAdvice } from '@/lib/chordpro';
 import { CatalogSkeleton } from '@/components/CatalogSkeleton';
-import { translations } from '@/lib/i18n';
 
 interface CatalogSectionProps {
   songs: Song[];
@@ -30,8 +29,6 @@ export function CatalogSection({
   isLoading = false,
   useSinglish = false,
 }: CatalogSectionProps) {
-  const t = translations[useSinglish ? 'en' : 'si'];
-
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [selectedLetter, setSelectedLetter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>(initialSearchQuery);
@@ -65,12 +62,12 @@ export function CatalogSection({
     setCurrentPage(1);
   };
 
-  // Category filter tabs — labels pulled from translation dictionary
+  // Category filter tabs
   const categories = [
-    { id: 'all', label: t.catAll },
-    { id: 'baila_6_8', label: t.catBaila },
-    { id: 'pop_4_4', label: t.catPop },
-    { id: 'sarala_3_4', label: t.catSarala },
+    { id: 'all', label: 'All Songs (සියල්ල)' },
+    { id: 'baila_6_8', label: 'Baila (බයිලා)' },
+    { id: 'pop_4_4', label: 'Pop & 70s' },
+    { id: 'sarala_3_4', label: 'Sarala Gee (සරල ගී)' },
   ];
 
   // 1. Filtered songs based on search, category, and letter
@@ -139,14 +136,15 @@ export function CatalogSection({
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-pulse" />
             <span className="text-xs font-mono font-bold text-purple-700 uppercase tracking-widest">
-              {t.catalogTag}
+              Song Directory
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
-            {t.catalogTitle}
+            Sinhala Song Catalog{' '}
+            <span className="text-purple-600 font-sinhala font-bold">ගීත එකතුව</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            {t.catalogSubtitle}
+            Tap any song to view chords with instant key transpose and smart auto-scrolling.
           </p>
         </div>
 
@@ -159,7 +157,7 @@ export function CatalogSection({
               type="text"
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
-              placeholder={t.catalogSearchPlaceholder}
+              placeholder="Search title, artist, key..."
               className="w-full pl-9 pr-8 py-2 rounded-full text-xs bg-white border border-purple-200 focus:border-purple-600 outline-none text-slate-800 placeholder-slate-400 shadow-2xs transition-colors"
             />
             {searchQuery && (
@@ -181,9 +179,9 @@ export function CatalogSection({
               onChange={(e) => setSortBy(e.target.value as any)}
               className="bg-transparent text-xs font-semibold text-slate-700 outline-none cursor-pointer"
             >
-              <option value="title">{t.sortTitle}</option>
-              <option value="artist">{t.sortArtist}</option>
-              <option value="tempo">{t.sortTempo}</option>
+              <option value="title">Title (A-Z)</option>
+              <option value="artist">Artist</option>
+              <option value="tempo">Tempo (Fastest)</option>
             </select>
           </div>
         </div>
@@ -209,9 +207,9 @@ export function CatalogSection({
         })}
       </div>
 
-      {/* Alphabet Quick Jump Bar (for rapid navigation through 500+ songs) */}
+      {/* Alphabet Quick Jump Bar */}
       <div className="flex items-center gap-1 overflow-x-auto pb-4 mb-6 scrollbar-none text-[11px] font-mono font-medium">
-        <span className="text-slate-400 uppercase text-[10px] mr-1 flex-shrink-0">{t.jump}</span>
+        <span className="text-slate-400 uppercase text-[10px] mr-1 flex-shrink-0">Jump:</span>
         {ALPHABET_LIST.map((letter) => {
           const isSelected = selectedLetter === letter;
           return (
@@ -233,13 +231,13 @@ export function CatalogSection({
       {/* Results Count Bar */}
       <div className="flex items-center justify-between text-xs text-slate-500 mb-4 px-1">
         <span>
-          {t.showing} <strong className="text-slate-800 font-semibold">{sortedSongs.length > 0 ? startIndex : 0}–{endIndex}</strong> {t.of}{' '}
-          <strong className="text-purple-700 font-semibold">{sortedSongs.length}</strong> {t.songsCount}
-          {searchQuery && <span> {t.matching} &ldquo;{searchQuery}&rdquo;</span>}
+          Showing <strong className="text-slate-800 font-semibold">{sortedSongs.length > 0 ? startIndex : 0}–{endIndex}</strong> of{' '}
+          <strong className="text-purple-700 font-semibold">{sortedSongs.length}</strong> songs
+          {searchQuery && <span> matching &ldquo;{searchQuery}&rdquo;</span>}
         </span>
         {totalPages > 1 && (
           <span className="font-mono text-[11px]">
-            {t.page} {currentPage} {t.of} {totalPages}
+            Page {currentPage} of {totalPages}
           </span>
         )}
       </div>
@@ -251,9 +249,9 @@ export function CatalogSection({
         /* Empty State */
         <div className="text-center py-16 px-4 bg-purple-50/40 rounded-3xl border border-purple-100 animate-fade-in">
           <Music className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">{t.noSongsFound}</h3>
+          <h3 className="text-base font-bold text-slate-800">No songs found</h3>
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-            {t.noSongsDesc}
+            Try searching with different keywords or clear your filter.
           </p>
           <button
             onClick={() => {
@@ -263,11 +261,11 @@ export function CatalogSection({
             }}
             className="mt-4 px-4 py-2 rounded-full bg-purple-600 text-white text-xs font-semibold hover:bg-purple-700 shadow-2xs transition-colors"
           >
-            {t.clearFilters}
+            Clear Filters
           </button>
         </div>
       ) : (
-        /* 500+ Responsive Song Cards Grid with Smooth Micro-Interactions */
+        /* 500+ Responsive Song Cards Grid */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-slide-up">
           {paginatedSongs.map((song) => {
             const isActive = song.id === currentSongId;
@@ -289,13 +287,12 @@ export function CatalogSection({
                     <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 transition-colors group-hover:bg-purple-200">
                       Key {song.key}
                     </span>
-
                     <span className="font-mono text-[11px] text-slate-400">
                       {song.tempo_bpm} BPM
                     </span>
                   </div>
 
-                  {/* Song Title — Sinhala when useSinglish=false, English when true */}
+                  {/* Song Title — switches between Sinhala and English based on toggle */}
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-900 transition-colors font-sinhala leading-snug">
                     {useSinglish ? song.title_en : song.title_si}
                   </h3>
@@ -307,18 +304,18 @@ export function CatalogSection({
                   </p>
                 </div>
 
-                {/* Card Footer: Play Chords Button */}
+                {/* Card Footer */}
                 <div className="pt-3 mt-3 border-t border-purple-50 flex items-center justify-between text-xs">
                   {capoAdvice.capoFret > 0 ? (
                     <span className="text-[11px] text-purple-600 font-medium truncate">
-                      {t.capo} {capoAdvice.capoFret}
+                      Capo {capoAdvice.capoFret}
                     </span>
                   ) : (
-                    <span className="text-[11px] text-slate-400 font-mono">{t.noCapo}</span>
+                    <span className="text-[11px] text-slate-400 font-mono">No Capo</span>
                   )}
 
                   <div className="flex items-center gap-1 font-semibold text-purple-700 group-hover:text-purple-900 transition-colors">
-                    <span>{isActive ? t.active : t.play}</span>
+                    <span>{isActive ? 'Active' : 'Play'}</span>
                     <Play className={`w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5 ${isActive ? 'fill-current' : ''}`} />
                   </div>
                 </div>
@@ -338,29 +335,18 @@ export function CatalogSection({
             className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-purple-200 text-slate-700 hover:bg-purple-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
-            <span>{t.previous}</span>
+            <span>Previous</span>
           </button>
 
-          {/* Quick Page Jump Numbers */}
           <div className="hidden sm:flex items-center gap-1">
             {Array.from({ length: totalPages }, (_, i) => i + 1)
-              .filter((page) => {
-                // Show first, last, and window around current page
-                return (
-                  page === 1 ||
-                  page === totalPages ||
-                  Math.abs(page - currentPage) <= 1
-                );
-              })
+              .filter((page) => page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1)
               .map((page, idx, arr) => {
                 const prev = arr[idx - 1];
                 const showEllipsis = prev && page - prev > 1;
-
                 return (
                   <React.Fragment key={page}>
-                    {showEllipsis && (
-                      <span className="text-slate-400 text-xs px-1">...</span>
-                    )}
+                    {showEllipsis && <span className="text-slate-400 text-xs px-1">...</span>}
                     <button
                       type="button"
                       onClick={() => setCurrentPage(page)}
@@ -383,7 +369,7 @@ export function CatalogSection({
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-purple-200 text-slate-700 hover:bg-purple-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
-            <span>{t.next}</span>
+            <span>Next</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         </div>

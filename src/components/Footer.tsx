@@ -3,7 +3,6 @@
 import React from 'react';
 import { Logo } from '@/components/Logo';
 import { Music, Radio, Mic2, Sparkles, Heart } from 'lucide-react';
-import { translations } from '@/lib/i18n';
 import Link from 'next/link';
 
 interface FooterProps {
@@ -14,8 +13,6 @@ interface FooterProps {
 }
 
 export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish = false }: FooterProps) {
-  const t = translations[useSinglish ? 'en' : 'si'];
-
   return (
     <footer className="w-full bg-gradient-to-b from-white to-purple-50/60 border-t border-purple-100/90 pt-16 pb-36 sm:pb-28 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -26,17 +23,13 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish =
             <div className="flex items-center gap-3">
               <Logo size={36} />
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black tracking-tight text-slate-900">
-                  Naada
-                </span>
-                <span className="text-base font-bold text-purple-600 font-sinhala">
-                  නාද
-                </span>
+                <span className="text-2xl font-black tracking-tight text-slate-900">Naada</span>
+                <span className="text-base font-bold text-purple-600 font-sinhala">නාද</span>
               </div>
             </div>
 
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
-              {t.footerDesc}
+              An editorial, mobile-first Web Application for Sinhala Guitar Chords featuring live mic-aware auto-scrolling, native Web Audio rhythm strumming synthesis, and real-time synchronized Paduru Jam rooms.
             </p>
 
             <div className="flex items-center gap-2 pt-1 text-xs text-purple-700 font-mono font-medium">
@@ -54,37 +47,25 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish =
             </h4>
             <ul className="space-y-2 text-sm text-slate-600 font-medium">
               <li>
-                <button
-                  onClick={() => onSelectSong('gamen-liyumak')}
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5"
-                >
+                <button onClick={() => onSelectSong('gamen-liyumak')} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5">
                   <Music className="w-3.5 h-3.5 text-purple-500" />
                   <span className="font-sinhala">ගමෙන් ලියුමක්</span> (Clarence)
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => onSelectSong('ran-kuduwe')}
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5"
-                >
+                <button onClick={() => onSelectSong('ran-kuduwe')} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5">
                   <Music className="w-3.5 h-3.5 text-purple-500" />
                   <span className="font-sinhala">රන් කූඩුවේ</span> (Milton)
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => onSelectSong('mal-mitak-thiyanna')}
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5"
-                >
+                <button onClick={() => onSelectSong('mal-mitak-thiyanna')} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5">
                   <Music className="w-3.5 h-3.5 text-purple-500" />
                   <span className="font-sinhala">මල් මිටක් තියන්න</span> (Kasun)
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => onSelectSong('dawasak-pala-nathi')}
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5"
-                >
+                <button onClick={() => onSelectSong('dawasak-pala-nathi')} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5">
                   <Music className="w-3.5 h-3.5 text-purple-500" />
                   <span className="font-sinhala">දවසක් පැල නැති</span> (Kapuge)
                 </button>
@@ -99,10 +80,7 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish =
             </h4>
             <ul className="space-y-2 text-sm text-slate-600 font-medium">
               <li>
-                <button
-                  onClick={onOpenPaduru}
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5"
-                >
+                <button onClick={onOpenPaduru} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5">
                   <Radio className="w-3.5 h-3.5 text-purple-600" />
                   <span>Paduru Jam Sync</span>
                 </button>
@@ -121,36 +99,28 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish =
               </li>
               {onOpenSubmit && (
                 <li>
-                  <button
-                    onClick={onOpenSubmit}
-                    className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5 text-purple-700 font-semibold"
-                  >
+                  <button onClick={onOpenSubmit} className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5 text-purple-700 font-semibold">
                     <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                    <span>{t.submitChords}</span>
+                    <span>Submit New Chords</span>
                   </button>
                 </li>
               )}
               <li>
-                <Link
-                  href="/admin/submissions"
-                  className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5 text-slate-500 hover:underline text-xs"
-                >
+                <Link href="/admin/submissions" className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5 text-slate-500 hover:underline text-xs">
                   <span>Admin Review Queue &rarr;</span>
                 </Link>
               </li>
             </ul>
           </div>
-
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p className="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
-            <span>{t.craftedWith}</span>
+            <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block animate-pulse" />
-            <span>by <strong className="text-slate-800 font-semibold hover:text-purple-700 transition-colors">Elio Dredd</strong> {t.forMusicLovers}</span>
+            <span>by <strong className="text-slate-800 font-semibold hover:text-purple-700 transition-colors">Elio Dredd</strong> for Sri Lankan music lovers worldwide.</span>
           </p>
-
           <p className="font-mono text-purple-700 font-medium">
             Naada (නාද) &copy; {new Date().getFullYear()} — Pure White &amp; Electric Purple
           </p>

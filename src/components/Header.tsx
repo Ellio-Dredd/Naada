@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Search, Radio, Users, Menu, X, Music, Sparkles, Globe } from 'lucide-react';
 import { Logo } from '@/components/Logo';
-import { translations } from '@/lib/i18n';
 
 interface HeaderProps {
   onOpenSearch: () => void;
@@ -33,7 +32,6 @@ export function Header({
   onToggleSinglish,
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const t = translations[useSinglish ? 'en' : 'si'];
 
   return (
     <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-white/90 border-b border-purple-100/90 transition-all">
@@ -64,7 +62,7 @@ export function Header({
                 : 'hover:text-purple-700'
             }`}
           >
-            <span>{t.allSongs}</span>
+            <span>All Songs (500+)</span>
           </button>
           <button
             onClick={onScrollToSheet}
@@ -75,14 +73,14 @@ export function Header({
             }`}
           >
             <Music className="w-3.5 h-3.5 text-purple-600" />
-            <span>{activeSongTitle ? t.sheetWithTitle(activeSongTitle) : t.chordSheet}</span>
+            <span>{activeSongTitle ? `Sheet: ${activeSongTitle}` : 'Chord Sheet'}</span>
           </button>
           <button
             onClick={onOpenPaduru}
             className="hover:text-purple-700 transition-colors flex items-center gap-1.5"
           >
             <Radio className="w-3.5 h-3.5 text-purple-600" />
-            <span>{t.paduruRoom}</span>
+            <span>Paduru Room</span>
           </button>
         </nav>
 
@@ -94,7 +92,7 @@ export function Header({
         >
           <span className="flex items-center gap-2 truncate">
             <Search className="w-3.5 h-3.5 text-purple-600 group-hover:scale-110 transition-transform" />
-            <span className="font-medium text-slate-500 truncate">{t.searchPlaceholder}</span>
+            <span className="font-medium text-slate-500 truncate">Search songs, artists...</span>
           </span>
           <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-semibold text-purple-700 bg-white border border-purple-100 rounded-md shadow-2xs">
             ⌘K
@@ -168,7 +166,7 @@ export function Header({
                 roomCode ? 'animate-pulse text-white' : 'text-purple-600'
               }`}
             />
-            <span className="hidden sm:inline font-medium">{t.paduruRoom}</span>
+            <span className="hidden sm:inline font-medium">Paduru Jam</span>
             <span className="sm:hidden font-medium">Jam</span>
             {roomCode && (
               <span className="flex items-center gap-1 font-mono text-[11px] bg-purple-900/40 px-1.5 py-0.5 rounded-full text-purple-100">
@@ -197,7 +195,7 @@ export function Header({
             <div className="flex items-center justify-between py-2 px-3 rounded-xl bg-purple-50/60 border border-purple-100 mb-2">
               <span className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5 text-purple-600" />
-                <span>{t.languageLabel}</span>
+                <span>Lyrics Language (භාෂාව)</span>
               </span>
               <button
                 type="button"
@@ -228,7 +226,7 @@ export function Header({
             }}
             className="w-full text-left py-2 px-3 rounded-xl hover:bg-purple-50 text-sm font-semibold text-slate-800 flex items-center justify-between"
           >
-            <span>{t.chordSheet}</span>
+            <span>Chord Sheet Player</span>
             <Music className="w-4 h-4 text-purple-600" />
           </button>
 
@@ -239,7 +237,7 @@ export function Header({
             }}
             className="w-full text-left py-2 px-3 rounded-xl hover:bg-purple-50 text-sm font-semibold text-slate-800 flex items-center justify-between"
           >
-            <span>{t.allSongs}</span>
+            <span>Song Catalog (ගීත එකතුව)</span>
             <Sparkles className="w-4 h-4 text-purple-600" />
           </button>
 
@@ -250,7 +248,7 @@ export function Header({
             }}
             className="w-full text-left py-2 px-3 rounded-xl hover:bg-purple-50 text-sm font-semibold text-slate-800 flex items-center justify-between"
           >
-            <span>{t.paduruRoom}</span>
+            <span>Paduru Party Room</span>
             <Radio className="w-4 h-4 text-purple-600" />
           </button>
 
@@ -262,7 +260,7 @@ export function Header({
               }}
               className="w-full text-left py-2 px-3 rounded-xl bg-purple-50 hover:bg-purple-100 text-sm font-semibold text-purple-900 flex items-center justify-between"
             >
-              <span>{t.submitChords}</span>
+              <span>Submit Chords (දායක වන්න)</span>
               <Sparkles className="w-4 h-4 text-purple-600" />
             </button>
           )}

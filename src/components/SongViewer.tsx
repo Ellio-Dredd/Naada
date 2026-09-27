@@ -5,7 +5,6 @@ import { Song } from '@/types';
 import { parseChordPro, getCapoAdvice, transposeChord } from '@/lib/chordpro';
 import { ChordDiagramModal } from '@/components/ChordDiagramModal';
 import { MiniChordTooltip } from '@/components/MiniChordTooltip';
-import { translations } from '@/lib/i18n';
 import { Sparkles, ArrowLeft, Mic2, Music2, Minus, Plus } from 'lucide-react';
 
 interface SongViewerProps {
@@ -32,7 +31,6 @@ export function SongViewer({
   onBackToCatalog,
 }: SongViewerProps) {
   const [selectedChord, setSelectedChord] = useState<string | null>(null);
-  const t = translations[useSinglish ? 'en' : 'si'];
 
   // Content selection: Sinhala Unicode or Romanized Singlish
   const rawContent = useSinglish ? song.content_singlish : song.content_chordpro;
@@ -49,7 +47,7 @@ export function SongViewer({
 
   const currentKey = transposeChord(song.key, semitones);
 
-  // Dynamic font sizing multiplier (compact & highly readable for multi-line visibility)
+  // Dynamic font sizing multiplier
   const chordFontSize = `${Math.round(12.5 * fontScale)}px`;
   const lyricFontSize = `${Math.round(15 * fontScale)}px`;
   const singerLyricFontSize = `${Math.round(20 * fontScale)}px`;
@@ -58,7 +56,7 @@ export function SongViewer({
     <article className="w-full max-w-3xl mx-auto px-2 sm:px-6 pt-2 pb-44 animate-fade-in">
       {/* Clean, Non-Technical Header */}
       <header className="mb-8 pb-6 border-b border-purple-100">
-        {/* Top Action Bar: Back to 500+ Songs & Controls */}
+        {/* Top Action Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           {onBackToCatalog && (
             <button
@@ -67,11 +65,11 @@ export function SongViewer({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 active:scale-95 text-purple-700 text-xs font-semibold transition-all shadow-2xs group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>{t.backToCatalog}</span>
+              <span>All Songs (500+)</span>
             </button>
           )}
 
-          {/* Quick View Mode & Language Toggles */}
+          {/* View Mode & Language Toggles */}
           <div className="flex items-center gap-2 ml-auto">
             {onToggleSinglish && (
               <button
@@ -83,7 +81,7 @@ export function SongViewer({
                     : 'bg-white hover:bg-purple-50 text-slate-700 border-purple-200'
                 }`}
               >
-                {useSinglish ? t.englishLyrics : t.sinhalaLyrics}
+                {useSinglish ? 'English Lyrics' : 'සිංහල පද'}
               </button>
             )}
 
@@ -100,12 +98,12 @@ export function SongViewer({
                 {viewMode === 'singer' ? (
                   <>
                     <Mic2 className="w-3 h-3" />
-                    <span>{t.singerMode}</span>
+                    <span>Singer Mode</span>
                   </>
                 ) : (
                   <>
                     <Music2 className="w-3 h-3" />
-                    <span>{t.chordsAndLyrics}</span>
+                    <span>Chords &amp; Lyrics</span>
                   </>
                 )}
               </button>
@@ -113,7 +111,7 @@ export function SongViewer({
           </div>
         </div>
 
-        {/* Title & Artist with Noto Sans Sinhala */}
+        {/* Title & Artist */}
         <div className="text-center sm:text-left">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-tight font-sinhala">
             {useSinglish ? song.title_en : song.title_si}
@@ -130,9 +128,8 @@ export function SongViewer({
 
         {/* Key, Tempo & Capo Badges */}
         <div className="flex flex-wrap items-center gap-2 mt-5">
-          {/* Key with inline transpose buttons */}
           <div className="inline-flex items-center bg-purple-50/80 border border-purple-200/80 rounded-xl px-2.5 py-1 text-xs font-medium text-slate-700">
-            <span className="text-slate-500 mr-1.5">{t.key}</span>
+            <span className="text-slate-500 mr-1.5">Key:</span>
             <strong className="text-purple-700 font-bold font-mono mr-2">{currentKey}</strong>
             {onTranspose && (
               <div className="flex items-center gap-1 border-l border-purple-200 pl-2">
@@ -157,13 +154,13 @@ export function SongViewer({
           </div>
 
           <span className="inline-flex items-center bg-white border border-purple-100 rounded-xl px-2.5 py-1 text-xs text-slate-600 font-medium shadow-2xs">
-            {t.tempo} <strong className="ml-1 text-slate-800 font-mono">{song.tempo_bpm} BPM</strong>
+            Tempo: <strong className="ml-1 text-slate-800 font-mono">{song.tempo_bpm} BPM</strong>
           </span>
 
           {capoAdvice.capoFret > 0 && viewMode === 'musician' && (
             <span className="inline-flex items-center gap-1.5 bg-purple-100/70 border border-purple-200 rounded-xl px-2.5 py-1 text-xs font-semibold text-purple-900 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-              <span>{t.capoFret} {capoAdvice.capoFret} ({capoAdvice.playKey} {t.shapes})</span>
+              <span>Capo Fret {capoAdvice.capoFret} ({capoAdvice.playKey} shapes)</span>
             </span>
           )}
         </div>
@@ -176,13 +173,9 @@ export function SongViewer({
         }`}
       >
         {parsedLines.map((line, lineIndex) => {
-          // Section Markers: Chorus / Verse
           if (line.type === 'section') {
             return (
-              <div
-                key={`sec-${lineIndex}`}
-                className="pt-4 pb-1 flex items-center gap-3"
-              >
+              <div key={`sec-${lineIndex}`} className="pt-4 pb-1 flex items-center gap-3">
                 <span className="font-mono text-xs font-bold tracking-wider uppercase text-purple-800 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200 flex-shrink-0">
                   {line.content}
                 </span>
@@ -191,39 +184,27 @@ export function SongViewer({
             );
           }
 
-          // Empty spacing line
           if (line.type === 'empty') {
             return <div key={`empty-${lineIndex}`} className="h-2" />;
           }
 
-          // Singer Mode: Centered, clean lyrics with chords hidden
           if (viewMode === 'singer') {
             const fullLyric = line.chunks?.map((c) => c.lyric).join('') || '';
             return (
               <p
                 key={`singer-${lineIndex}`}
                 style={{ fontSize: singerLyricFontSize }}
-                className={`font-medium text-slate-800 leading-normal font-sinhala ${
-                  useSinglish ? 'font-sans' : ''
-                }`}
+                className={`font-medium text-slate-800 leading-normal font-sinhala ${useSinglish ? 'font-sans' : ''}`}
               >
                 {fullLyric}
               </p>
             );
           }
 
-          // Musician View: Syllable-Locked Chords above Lyrics (Compact & Highly Visible)
           return (
-            <div
-              key={`musician-${lineIndex}`}
-              className="flex flex-wrap items-end gap-x-0 leading-none"
-            >
+            <div key={`musician-${lineIndex}`} className="flex flex-wrap items-end gap-x-0 leading-none">
               {line.chunks?.map((chunk, chunkIndex) => (
-                <div
-                  key={`chunk-${lineIndex}-${chunkIndex}`}
-                  className="flex flex-col flex-shrink-0 min-w-0"
-                >
-                  {/* Chord Tag Box with Hover Mini Tooltip */}
+                <div key={`chunk-${lineIndex}-${chunkIndex}`} className="flex flex-col flex-shrink-0 min-w-0">
                   <div className="h-5 flex items-end mb-0.5 relative group/chord">
                     {chunk.chord ? (
                       <>
@@ -236,21 +217,15 @@ export function SongViewer({
                         >
                           {chunk.chord}
                         </button>
-
-                        {/* Hover Mini Fretboard Tooltip */}
                         <MiniChordTooltip chord={chunk.chord} />
                       </>
                     ) : (
                       <span className="opacity-0 select-none text-[11px]">&nbsp;</span>
                     )}
                   </div>
-
-                  {/* Lyric Syllable */}
                   <div
                     style={{ fontSize: lyricFontSize }}
-                    className={`font-normal text-slate-800 leading-snug font-sinhala whitespace-pre select-text transition-colors ${
-                      useSinglish ? 'font-sans' : ''
-                    }`}
+                    className={`font-normal text-slate-800 leading-snug font-sinhala whitespace-pre select-text transition-colors ${useSinglish ? 'font-sans' : ''}`}
                   >
                     {chunk.lyric}
                   </div>
@@ -261,12 +236,8 @@ export function SongViewer({
         })}
       </div>
 
-      {/* Chord Diagram Popup Modal */}
       {selectedChord && (
-        <ChordDiagramModal
-          chord={selectedChord}
-          onClose={() => setSelectedChord(null)}
-        />
+        <ChordDiagramModal chord={selectedChord} onClose={() => setSelectedChord(null)} />
       )}
     </article>
   );

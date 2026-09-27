@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Search, Radio, Music, Sparkles } from 'lucide-react';
-import { translations } from '@/lib/i18n';
 
 interface HeroSectionProps {
   onSearchInput: (query: string) => void;
@@ -22,8 +21,6 @@ export function HeroSection({
   onOpenActiveSong,
   useSinglish = false,
 }: HeroSectionProps) {
-  const t = translations[useSinglish ? 'en' : 'si'];
-
   return (
     <section className="relative pt-10 pb-12 sm:pt-16 sm:pb-16 text-center px-4 overflow-hidden">
       {/* Soft background ambient glow */}
@@ -33,20 +30,20 @@ export function HeroSection({
         {/* Simple Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-xs font-medium shadow-2xs">
           <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-          <span>{t.heroBadge}</span>
+          <span>500+ Sinhala Guitar Chords &amp; Lyrics</span>
         </div>
 
         {/* Clean Headline */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-tight">
-          {t.heroTitlePrefix}{' '}
+          සොයන්න. වයන්න.{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-violet-600 font-sinhala">
-            {t.heroTitleHighlight}
+            ගයන්න.
           </span>
         </h1>
 
         {/* Short Subtitle */}
         <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
-          {t.heroSubtitle}
+          Clean guitar chords, lyrics in Sinhala and Singlish, smart mic auto-scrolling, and real-time Paduru Jam rooms for your sing-alongs.
         </p>
 
         {/* Prominent Search Bar */}
@@ -59,7 +56,7 @@ export function HeroSection({
                 onSearchInput(e.target.value);
                 onScrollToCatalog();
               }}
-              placeholder={t.heroSearchPlaceholder}
+              placeholder="Search 500+ songs, artists, or lyrics (e.g. Clarence, Baila, G Major)..."
               className="w-full pl-12 pr-4 py-3.5 rounded-full text-sm bg-white border border-purple-200/90 shadow-sm focus:border-purple-600 focus:ring-4 focus:ring-purple-100 outline-none text-slate-800 placeholder-slate-400 transition-all"
             />
           </div>
@@ -73,7 +70,7 @@ export function HeroSection({
             className="px-4 py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-xs transition-colors flex items-center gap-1.5"
           >
             <Music className="w-3.5 h-3.5" />
-            <span>{t.browseSongs}</span>
+            <span>Browse 500+ Songs</span>
           </button>
 
           {activeSongTitle && onOpenActiveSong && (
@@ -82,7 +79,7 @@ export function HeroSection({
               onClick={onOpenActiveSong}
               className="px-4 py-2 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 font-semibold transition-colors flex items-center gap-1.5"
             >
-              <span>{t.nowPlaying} {activeSongTitle}</span>
+              <span>Now Playing: {activeSongTitle}</span>
             </button>
           )}
 
@@ -92,7 +89,7 @@ export function HeroSection({
             className="px-4 py-2 rounded-full bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 font-semibold shadow-2xs transition-colors flex items-center gap-1.5"
           >
             <Radio className="w-3.5 h-3.5 text-purple-600" />
-            <span>{t.paduruJamRoom}</span>
+            <span>Paduru Jam Room</span>
           </button>
         </div>
       </div>
