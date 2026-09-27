@@ -141,7 +141,7 @@ export function CatalogSection({
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
             Sinhala Song Catalog{' '}
-            <span key={`cattitle-${useSinglish}`} className="text-purple-600 font-sinhala font-bold animate-lang-fade">
+            <span className="text-purple-600 font-sinhala font-bold lang-switch-content">
               {useSinglish ? 'Song Collection' : 'ගීත එකතුව'}
             </span>
           </h2>
@@ -268,7 +268,7 @@ export function CatalogSection({
         </div>
       ) : (
         /* 500+ Responsive Song Cards Grid */
-        <div key={`grid-${useSinglish}`} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-fade-in">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
           {paginatedSongs.map((song) => {
             const isActive = song.id === currentSongId;
             const capoAdvice = getCapoAdvice(song.key, 0);
@@ -294,14 +294,15 @@ export function CatalogSection({
                     </span>
                   </div>
 
-                  {/* Song Title — switches between Sinhala and English based on toggle */}
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-900 transition-colors font-sinhala leading-snug">
+                  {/* Song Title */}
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-900 transition-colors font-sinhala leading-snug lang-switch-content">
                     {useSinglish ? song.title_en : song.title_si}
                   </h3>
                   <p className="text-xs text-slate-600 font-medium mt-0.5 line-clamp-1">
-                    {song.artist}{' '}
-                    <span className="text-slate-400 font-mono text-[11px]">
-                      • {useSinglish ? song.title_si : song.title_en}
+                    <span className="lang-switch-content">{song.artist}{' '}
+                      <span className="text-slate-400 font-mono text-[11px]">
+                        • {useSinglish ? song.title_si : song.title_en}
+                      </span>
                     </span>
                   </p>
                 </div>

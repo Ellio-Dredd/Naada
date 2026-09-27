@@ -114,7 +114,7 @@ export function SongViewer({
         {/* Title & Artist */}
         <div className="text-center sm:text-left">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-tight font-sinhala">
-            <span key={`title-${song.id}-${useSinglish}`} className="animate-lang-fade">
+            <span className="lang-switch-content">
               {useSinglish ? song.title_en : song.title_si}
             </span>
           </h1>
@@ -170,8 +170,7 @@ export function SongViewer({
 
       {/* Main Chord Manuscript Sheet */}
       <div
-        key={`lyrics-${song.id}-${useSinglish}`}
-        className={`animate-fade-in transition-all duration-300 ${
+        className={`lang-switch-content transition-[opacity,transform,spacing] duration-300 ${
           viewMode === 'singer' ? 'text-center space-y-7' : 'space-y-3.5'
         }`}
       >

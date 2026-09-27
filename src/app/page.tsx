@@ -32,6 +32,7 @@ export default function HomePage() {
   const [isSwitchingSong, setIsSwitchingSong] = useState<boolean>(false);
   const [semitones, setSemitones] = useState<number>(0);
   const [useSinglish, setUseSinglish] = useState<boolean>(false);
+  const [isLangFading, setIsLangFading] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isPaduruOpen, setIsPaduruOpen] = useState<boolean>(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState<boolean>(false);
@@ -176,8 +177,21 @@ export default function HomePage() {
     }, 180);
   };
 
+  const handleToggleLang = useCallback(() => {
+    setIsLangFading(true);
+    setTimeout(() => {
+      setUseSinglish((prev) => !prev);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setIsLangFading(false));
+      });
+    }, 110);
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col relative bg-white lavender-glow-bg text-slate-900 selection:bg-purple-100 selection:text-purple-900">
+    <div
+      className="min-h-screen flex flex-col relative bg-white lavender-glow-bg text-slate-900 selection:bg-purple-100 selection:text-purple-900"
+      data-lang-fading={isLangFading ? 'true' : 'false'}
+    >
       {/* Sleek Top Edge Loading Progress Bar */}
       {isLoadingSongs && (
         <div className="fixed top-0 left-0 right-0 h-[2.5px] bg-purple-100 z-50 overflow-hidden">
@@ -204,7 +218,7 @@ export default function HomePage() {
         roomCode={roomCode}
         connectedCount={connectedCount}
         useSinglish={useSinglish}
-        onToggleSinglish={() => setUseSinglish((prev) => !prev)}
+        onToggleSinglish={handleToggleLang}
       />
 
       {/* Realtime Synced Jam Room Indicator Banner */}
@@ -294,7 +308,7 @@ export default function HomePage() {
                 semitones={semitones}
                 onTranspose={handleTranspose}
                 useSinglish={useSinglish}
-                onToggleSinglish={() => setUseSinglish((prev) => !prev)}
+                onToggleSinglish={handleToggleLang}
                 viewMode={viewMode}
                 onToggleViewMode={() => setViewMode((prev) => (prev === 'musician' ? 'singer' : 'musician'))}
                 fontScale={fontScale}
@@ -329,7 +343,7 @@ export default function HomePage() {
             onTranspose={handleTranspose}
             onResetTranspose={handleResetTranspose}
             useSinglish={useSinglish}
-            onToggleSinglish={() => setUseSinglish((prev) => !prev)}
+            onToggleSinglish={handleToggleLang}
             capoAdvice={capoAdvice}
             isWakeLocked={isWakeLocked}
             onToggleWakeLock={toggleWakeLock}
