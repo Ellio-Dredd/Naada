@@ -141,7 +141,9 @@ export function CatalogSection({
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
             Sinhala Song Catalog{' '}
-            <span className="text-purple-600 font-sinhala font-bold">ගීත එකතුව</span>
+            <span className="text-purple-600 font-sinhala font-bold">
+              {useSinglish ? 'Song Collection' : 'ගීත එකතුව'}
+            </span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Tap any song to view chords with instant key transpose and smart auto-scrolling.

@@ -35,9 +35,9 @@ export function HeroSection({
 
         {/* Clean Headline */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-tight">
-          සොයන්න. වයන්න.{' '}
+          {useSinglish ? 'Search. Strum.' : 'සොයන්න. වයන්න.'}{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-violet-600 font-sinhala">
-            ගයන්න.
+            {useSinglish ? 'Sing.' : 'ගයන්න.'}
           </span>
         </h1>
 
