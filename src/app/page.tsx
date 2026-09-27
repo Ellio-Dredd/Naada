@@ -196,9 +196,11 @@ export default function HomePage() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         activeTab={activeTab}
-        activeSongTitle={currentSong.title_si}
+        activeSongTitle={useSinglish ? currentSong.title_en : currentSong.title_si}
         roomCode={roomCode}
         connectedCount={connectedCount}
+        useSinglish={useSinglish}
+        onToggleSinglish={() => setUseSinglish((prev) => !prev)}
       />
 
       {/* Realtime Synced Jam Room Indicator Banner */}

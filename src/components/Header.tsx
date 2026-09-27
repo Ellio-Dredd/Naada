@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Radio, Users, Menu, X, Music, Sparkles } from 'lucide-react';
+import { Search, Radio, Users, Menu, X, Music, Sparkles, Globe } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 
 interface HeaderProps {
@@ -14,6 +14,8 @@ interface HeaderProps {
   connectedCount: number;
   activeTab?: 'catalog' | 'sheet';
   activeSongTitle?: string;
+  useSinglish?: boolean;
+  onToggleSinglish?: () => void;
 }
 
 export function Header({
@@ -26,6 +28,8 @@ export function Header({
   connectedCount,
   activeTab = 'catalog',
   activeSongTitle,
+  useSinglish = false,
+  onToggleSinglish,
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -106,6 +110,47 @@ export function Header({
             <Search className="w-4 h-4" />
           </button>
 
+          {/* Desktop Language Switcher Segmented Pill */}
+          {onToggleSinglish && (
+            <button
+              type="button"
+              onClick={onToggleSinglish}
+              className="hidden sm:flex items-center p-0.5 rounded-full bg-purple-50/80 border border-purple-200/90 text-xs font-semibold shadow-2xs hover:bg-purple-100/60 transition-all active:scale-95"
+              title={`Switch lyrics language (Current: ${useSinglish ? 'English / Singlish' : 'Sinhala / සිංහල'})`}
+            >
+              <span
+                className={`px-2.5 py-1 rounded-full text-[11px] transition-all duration-200 ${
+                  !useSinglish
+                    ? 'bg-purple-600 text-white font-sinhala font-bold shadow-2xs'
+                    : 'text-slate-600 hover:text-purple-700'
+                }`}
+              >
+                සිංහල
+              </span>
+              <span
+                className={`px-2.5 py-1 rounded-full text-[11px] transition-all duration-200 ${
+                  useSinglish
+                    ? 'bg-purple-600 text-white font-bold shadow-2xs'
+                    : 'text-slate-600 hover:text-purple-700'
+                }`}
+              >
+                English
+              </span>
+            </button>
+          )}
+
+          {/* Mobile Compact Language Toggle Pill */}
+          {onToggleSinglish && (
+            <button
+              type="button"
+              onClick={onToggleSinglish}
+              className="sm:hidden px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 border border-purple-200 text-purple-700 hover:bg-purple-100 transition-all active:scale-90"
+              title="Toggle Sinhala / English"
+            >
+              {useSinglish ? 'EN' : 'සිං'}
+            </button>
+          )}
+
           {/* Paduru Sync Pill */}
           <button
             type="button"
@@ -145,6 +190,35 @@ export function Header({
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-purple-100 bg-white/95 px-4 py-4 space-y-3 shadow-lg animate-in slide-in-from-top-2 duration-150">
+          {/* Mobile Language Switcher Row */}
+          {onToggleSinglish && (
+            <div className="flex items-center justify-between py-2 px-3 rounded-xl bg-purple-50/60 border border-purple-100 mb-2">
+              <span className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-purple-600" />
+                <span>Lyrics Language (භාෂාව)</span>
+              </span>
+              <button
+                type="button"
+                onClick={onToggleSinglish}
+                className="flex items-center p-0.5 rounded-full bg-white border border-purple-200 text-xs font-semibold shadow-2xs active:scale-95 transition-all"
+              >
+                <span
+                  className={`px-2.5 py-0.5 rounded-full text-xs transition-all ${
+                    !useSinglish ? 'bg-purple-600 text-white font-sinhala font-bold' : 'text-slate-600'
+                  }`}
+                >
+                  සිංහල
+                </span>
+                <span
+                  className={`px-2.5 py-0.5 rounded-full text-xs transition-all ${
+                    useSinglish ? 'bg-purple-600 text-white font-bold' : 'text-slate-600'
+                  }`}
+                >
+                  English
+                </span>
+              </button>
+            </div>
+          )}
           <button
             onClick={() => {
               onScrollToSheet();
