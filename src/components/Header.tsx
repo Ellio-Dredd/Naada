@@ -57,16 +57,7 @@ export function Header({
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-4 text-xs font-semibold text-slate-600">
-          <button
-            onClick={onScrollToCatalog}
-            className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${
-              activeTab === 'catalog'
-                ? 'bg-purple-50 text-purple-800 font-bold border border-purple-200'
-                : 'hover:text-purple-700'
-            }`}
-          >
-            <span>All Songs (500+)</span>
-          </button>
+
           <button
             onClick={onScrollToSheet}
             className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 ${
