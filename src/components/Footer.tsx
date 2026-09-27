@@ -143,10 +143,10 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p className="flex items-center gap-1">
+          <p className="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
             <span>Crafted with</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-            <span>for Sri Lankan music lovers worldwide.</span>
+            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block animate-pulse" />
+            <span>by <strong className="text-slate-800 font-semibold hover:text-purple-700 transition-colors">Elio Dredd</strong> for Sri Lankan music lovers worldwide.</span>
           </p>
 
           <p className="font-mono text-purple-700 font-medium">
