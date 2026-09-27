@@ -141,7 +141,7 @@ export function CatalogSection({
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
             Sinhala Song Catalog{' '}
-            <span className="text-purple-600 font-sinhala font-bold">
+            <span key={`cattitle-${useSinglish}`} className="text-purple-600 font-sinhala font-bold animate-lang-fade">
               {useSinglish ? 'Song Collection' : 'ගීත එකතුව'}
             </span>
           </h2>
@@ -268,7 +268,7 @@ export function CatalogSection({
         </div>
       ) : (
         /* 500+ Responsive Song Cards Grid */
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-slide-up">
+        <div key={`grid-${useSinglish}`} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-fade-in">
           {paginatedSongs.map((song) => {
             const isActive = song.id === currentSongId;
             const capoAdvice = getCapoAdvice(song.key, 0);

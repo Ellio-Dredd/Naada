@@ -13,6 +13,8 @@ import { SearchModal } from '@/components/SearchModal';
 import { PaduruModal } from '@/components/PaduruModal';
 import { SubmitSongModal } from '@/components/SubmitSongModal';
 import { SongViewerSkeleton } from '@/components/SongViewerSkeleton';
+import { AuthModal } from '@/components/AuthModal';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { useStrumPlayer } from '@/hooks/useStrumPlayer';
 import { useMicAutoScroll } from '@/hooks/useMicAutoScroll';
 import { useWakeLock } from '@/hooks/useWakeLock';
@@ -33,6 +35,7 @@ export default function HomePage() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isPaduruOpen, setIsPaduruOpen] = useState<boolean>(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState<boolean>(false);
+  const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
   const [scrollSpeed, setScrollSpeed] = useState<number>(0.7);
   const [fontScale, setFontScale] = useState<number>(1);
 
@@ -187,6 +190,7 @@ export default function HomePage() {
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenPaduru={() => setIsPaduruOpen(true)}
         onOpenSubmit={() => setIsSubmitOpen(true)}
+        onOpenAuth={() => setIsAuthOpen(true)}
         onScrollToCatalog={() => {
           setActiveTab('catalog');
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -371,6 +375,12 @@ export default function HomePage() {
       <SubmitSongModal
         isOpen={isSubmitOpen}
         onClose={() => setIsSubmitOpen(false)}
+      />
+
+      {/* Auth Modal — Login / Sign Up */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
       />
     </div>
   );

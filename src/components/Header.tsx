@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { Search, Radio, Users, Menu, X, Music, Sparkles, Globe } from 'lucide-react';
 import { Logo } from '@/components/Logo';
+import { UserMenu } from '@/components/UserMenu';
 
 interface HeaderProps {
   onOpenSearch: () => void;
   onOpenPaduru: () => void;
   onOpenSubmit?: () => void;
+  onOpenAuth: () => void;
   onScrollToCatalog: () => void;
   onScrollToSheet: () => void;
   roomCode: string | null;
@@ -22,6 +24,7 @@ export function Header({
   onOpenSearch,
   onOpenPaduru,
   onOpenSubmit,
+  onOpenAuth,
   onScrollToCatalog,
   onScrollToSheet,
   roomCode,
@@ -110,46 +113,72 @@ export function Header({
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Desktop Language Switcher Segmented Pill */}
+          {/* Desktop Language Switcher — Sliding Pill */}
           {onToggleSinglish && (
-            <button
-              type="button"
-              onClick={onToggleSinglish}
-              className="hidden sm:flex items-center p-0.5 rounded-full bg-purple-50/80 border border-purple-200/90 text-xs font-semibold shadow-2xs hover:bg-purple-100/60 transition-all active:scale-95"
+            <div
+              className="hidden sm:flex relative p-0.5 rounded-full bg-purple-100/60 border border-purple-200/80 shadow-inner"
               title={`Switch language (Current: ${useSinglish ? 'English' : 'Sinhala / සිංහල'})`}
             >
+              {/* Sliding background indicator */}
               <span
-                className={`px-2.5 py-1 rounded-full text-[11px] transition-all duration-200 ${
-                  !useSinglish
-                    ? 'bg-purple-600 text-white font-sinhala font-bold shadow-2xs'
-                    : 'text-slate-600 hover:text-purple-700'
+                aria-hidden
+                className={`absolute top-0.5 bottom-0.5 rounded-full bg-purple-600 shadow-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                  useSinglish ? 'left-1/2 right-0.5' : 'left-0.5 right-1/2'
+                }`}
+              />
+              <button
+                type="button"
+                onClick={onToggleSinglish}
+                className={`relative z-10 px-3 py-1 text-[11px] font-semibold rounded-full transition-colors duration-200 select-none ${
+                  !useSinglish ? 'text-white font-sinhala font-bold' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 සිංහල
-              </span>
-              <span
-                className={`px-2.5 py-1 rounded-full text-[11px] transition-all duration-200 ${
-                  useSinglish
-                    ? 'bg-purple-600 text-white font-bold shadow-2xs'
-                    : 'text-slate-600 hover:text-purple-700'
+              </button>
+              <button
+                type="button"
+                onClick={onToggleSinglish}
+                className={`relative z-10 px-3 py-1 text-[11px] font-semibold rounded-full transition-colors duration-200 select-none ${
+                  useSinglish ? 'text-white font-bold' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 English
-              </span>
-            </button>
+              </button>
+            </div>
           )}
 
-          {/* Mobile Compact Language Toggle Pill */}
+          {/* Mobile Compact Language Toggle — Sliding Pill */}
           {onToggleSinglish && (
-            <button
-              type="button"
-              onClick={onToggleSinglish}
-              className="sm:hidden px-2.5 py-1 rounded-full text-xs font-bold bg-purple-50 border border-purple-200 text-purple-700 hover:bg-purple-100 transition-all active:scale-90"
-              title="Toggle Sinhala / English"
-            >
-              {useSinglish ? 'EN' : 'සිං'}
-            </button>
+            <div className="sm:hidden relative flex p-0.5 rounded-full bg-purple-100/60 border border-purple-200/80 shadow-inner">
+              <span
+                aria-hidden
+                className={`absolute top-0.5 bottom-0.5 rounded-full bg-purple-600 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+                  useSinglish ? 'left-1/2 right-0.5' : 'left-0.5 right-1/2'
+                }`}
+              />
+              <button
+                type="button"
+                onClick={onToggleSinglish}
+                className={`relative z-10 px-2 py-0.5 text-[10px] font-bold select-none transition-colors duration-200 ${
+                  !useSinglish ? 'text-white font-sinhala' : 'text-slate-500'
+                }`}
+              >
+                සිං
+              </button>
+              <button
+                type="button"
+                onClick={onToggleSinglish}
+                className={`relative z-10 px-2 py-0.5 text-[10px] font-bold select-none transition-colors duration-200 ${
+                  useSinglish ? 'text-white' : 'text-slate-500'
+                }`}
+              >
+                EN
+              </button>
+            </div>
           )}
+
+          {/* User Avatar / Log In Button */}
+          <UserMenu onOpenAuth={onOpenAuth} />
 
           {/* Paduru Sync Pill */}
           <button
