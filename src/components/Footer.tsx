@@ -3,16 +3,18 @@
 import React from 'react';
 import { Logo } from '@/components/Logo';
 import { Music, Radio, Mic2, Sparkles, Heart } from 'lucide-react';
-
+import { translations } from '@/lib/i18n';
 import Link from 'next/link';
 
 interface FooterProps {
   onSelectSong: (songId: string) => void;
   onOpenPaduru: () => void;
   onOpenSubmit?: () => void;
+  useSinglish?: boolean;
 }
 
-export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps) {
+export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit, useSinglish = false }: FooterProps) {
+  const t = translations[useSinglish ? 'en' : 'si'];
 
   return (
     <footer className="w-full bg-gradient-to-b from-white to-purple-50/60 border-t border-purple-100/90 pt-16 pb-36 sm:pb-28 transition-colors">
@@ -34,7 +36,7 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps
             </div>
 
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
-              An editorial, mobile-first Web Application for Sinhala Guitar Chords featuring live mic-aware auto-scrolling, native Web Audio rhythm strumming synthesis, and real-time synchronized Paduru Jam rooms.
+              {t.footerDesc}
             </p>
 
             <div className="flex items-center gap-2 pt-1 text-xs text-purple-700 font-mono font-medium">
@@ -111,7 +113,7 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps
               </li>
               <li className="flex items-center gap-1.5 text-slate-600">
                 <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                <span>Capo Advisor & Transposer</span>
+                <span>Capo Advisor &amp; Transposer</span>
               </li>
               <li className="flex items-center gap-1.5 text-slate-600">
                 <Music className="w-3.5 h-3.5 text-purple-600" />
@@ -124,7 +126,7 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps
                     className="hover:text-purple-700 transition-colors text-left flex items-center gap-1.5 text-purple-700 font-semibold"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                    <span>Submit New Chords</span>
+                    <span>{t.submitChords}</span>
                   </button>
                 </li>
               )}
@@ -144,13 +146,13 @@ export function Footer({ onSelectSong, onOpenPaduru, onOpenSubmit }: FooterProps
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p className="flex items-center gap-1.5 flex-wrap justify-center sm:justify-start">
-            <span>Crafted with</span>
+            <span>{t.craftedWith}</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline-block animate-pulse" />
-            <span>by <strong className="text-slate-800 font-semibold hover:text-purple-700 transition-colors">Elio Dredd</strong> for Sri Lankan music lovers worldwide.</span>
+            <span>by <strong className="text-slate-800 font-semibold hover:text-purple-700 transition-colors">Elio Dredd</strong> {t.forMusicLovers}</span>
           </p>
 
           <p className="font-mono text-purple-700 font-medium">
-            Naada (නාද) &copy; {new Date().getFullYear()} — Pure White & Electric Purple
+            Naada (නාද) &copy; {new Date().getFullYear()} — Pure White &amp; Electric Purple
           </p>
         </div>
       </div>

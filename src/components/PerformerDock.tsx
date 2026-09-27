@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { StrumPatternId } from '@/types';
 import { STRUM_PATTERNS } from '@/data/songs';
+import { translations } from '@/lib/i18n';
 
 interface PerformerDockProps {
   // Auto-scroll & Mic
@@ -90,6 +91,7 @@ export function PerformerDock({
 }: PerformerDockProps) {
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const toolsRef = useRef<HTMLDivElement>(null);
+  const t = translations[useSinglish ? 'en' : 'si'];
 
   // Close drawer on click outside
   useEffect(() => {
@@ -143,7 +145,7 @@ export function PerformerDock({
             <div className="flex items-center gap-2">
               <Sliders className="w-4 h-4 text-purple-600" />
               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                Performer Settings & Tools
+                {t.toolsTitle}
               </h4>
             </div>
             <button
@@ -159,7 +161,7 @@ export function PerformerDock({
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-slate-700 flex items-center gap-1.5">
                 <Music className="w-3.5 h-3.5 text-purple-600" />
-                Rhythm Backing Track
+                {t.rhythmBacking}
               </span>
               <button
                 type="button"
@@ -170,7 +172,7 @@ export function PerformerDock({
                     : 'bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200'
                 }`}
               >
-                {isStrumPlaying ? 'Stop Strum' : 'Start Strum'}
+                {isStrumPlaying ? t.stopStrum : t.startStrum}
               </button>
             </div>
 
@@ -197,7 +199,7 @@ export function PerformerDock({
 
             {/* Tempo BPM & Tap */}
             <div className="flex items-center justify-between pt-1">
-              <span className="text-xs text-slate-500">Tempo:</span>
+              <span className="text-xs text-slate-500">{t.tempoLabel}</span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => onBpmChange(Math.max(50, bpm - 2))}
@@ -220,7 +222,7 @@ export function PerformerDock({
                   className="px-2 py-0.5 rounded-md bg-white border border-purple-200 text-purple-700 text-[10px] font-bold uppercase hover:bg-purple-50"
                   title="Tap beat 3-4 times"
                 >
-                  Tap
+                  {t.tap}
                 </button>
               </div>
             </div>
@@ -230,8 +232,8 @@ export function PerformerDock({
             {/* Mic-Aware Auto-Scroll */}
             <div className="flex items-center justify-between text-xs">
               <div>
-                <span className="font-semibold text-slate-800 block">Smart Mic Auto-Scroll</span>
-                <span className="text-[11px] text-slate-500">Auto-pauses scrolling when music stops</span>
+                <span className="font-semibold text-slate-800 block">{t.micAutoScroll}</span>
+                <span className="text-[11px] text-slate-500">{t.micAutoScrollDesc}</span>
               </div>
               <button
                 type="button"
@@ -249,8 +251,8 @@ export function PerformerDock({
             {/* Screen Wake Lock */}
             <div className="flex items-center justify-between text-xs">
               <div>
-                <span className="font-semibold text-slate-800 block">Keep Screen Awake</span>
-                <span className="text-[11px] text-slate-500">Prevents phone screen from turning off</span>
+                <span className="font-semibold text-slate-800 block">{t.wakeLock}</span>
+                <span className="text-[11px] text-slate-500">{t.wakeLockDesc}</span>
               </div>
               <button
                 type="button"
@@ -290,12 +292,12 @@ export function PerformerDock({
           {isAutoScrollPlaying ? (
             <>
               <Pause className="w-3.5 h-3.5 fill-current animate-pulse" />
-              <span>Pause</span>
+              <span>{t.pause}</span>
             </>
           ) : (
             <>
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Scroll</span>
+              <span>{t.scroll}</span>
             </>
           )}
         </button>
@@ -341,7 +343,7 @@ export function PerformerDock({
             className="font-mono text-[11px] font-bold text-purple-900 px-1.5 hover:underline transition-all"
             title="Click to reset pitch transpose"
           >
-            {semitones === 0 ? 'Pitch' : `${semitones > 0 ? '+' : ''}${semitones}`}
+            {semitones === 0 ? t.pitch : `${semitones > 0 ? '+' : ''}${semitones}`}
           </button>
           <button
             type="button"

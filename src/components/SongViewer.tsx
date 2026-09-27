@@ -5,6 +5,7 @@ import { Song } from '@/types';
 import { parseChordPro, getCapoAdvice, transposeChord } from '@/lib/chordpro';
 import { ChordDiagramModal } from '@/components/ChordDiagramModal';
 import { MiniChordTooltip } from '@/components/MiniChordTooltip';
+import { translations } from '@/lib/i18n';
 import { Sparkles, ArrowLeft, Mic2, Music2, Minus, Plus } from 'lucide-react';
 
 interface SongViewerProps {
@@ -31,6 +32,7 @@ export function SongViewer({
   onBackToCatalog,
 }: SongViewerProps) {
   const [selectedChord, setSelectedChord] = useState<string | null>(null);
+  const t = translations[useSinglish ? 'en' : 'si'];
 
   // Content selection: Sinhala Unicode or Romanized Singlish
   const rawContent = useSinglish ? song.content_singlish : song.content_chordpro;
@@ -65,7 +67,7 @@ export function SongViewer({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 active:scale-95 text-purple-700 text-xs font-semibold transition-all shadow-2xs group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>All Songs (500+)</span>
+              <span>{t.backToCatalog}</span>
             </button>
           )}
 
@@ -81,7 +83,7 @@ export function SongViewer({
                     : 'bg-white hover:bg-purple-50 text-slate-700 border-purple-200'
                 }`}
               >
-                {useSinglish ? 'English Lyrics' : 'සිංහල පද'}
+                {useSinglish ? t.englishLyrics : t.sinhalaLyrics}
               </button>
             )}
 
@@ -98,12 +100,12 @@ export function SongViewer({
                 {viewMode === 'singer' ? (
                   <>
                     <Mic2 className="w-3 h-3" />
-                    <span>Singer Mode</span>
+                    <span>{t.singerMode}</span>
                   </>
                 ) : (
                   <>
                     <Music2 className="w-3 h-3" />
-                    <span>Chords & Lyrics</span>
+                    <span>{t.chordsAndLyrics}</span>
                   </>
                 )}
               </button>
@@ -130,7 +132,7 @@ export function SongViewer({
         <div className="flex flex-wrap items-center gap-2 mt-5">
           {/* Key with inline transpose buttons */}
           <div className="inline-flex items-center bg-purple-50/80 border border-purple-200/80 rounded-xl px-2.5 py-1 text-xs font-medium text-slate-700">
-            <span className="text-slate-500 mr-1.5">Key:</span>
+            <span className="text-slate-500 mr-1.5">{t.key}</span>
             <strong className="text-purple-700 font-bold font-mono mr-2">{currentKey}</strong>
             {onTranspose && (
               <div className="flex items-center gap-1 border-l border-purple-200 pl-2">
@@ -155,13 +157,13 @@ export function SongViewer({
           </div>
 
           <span className="inline-flex items-center bg-white border border-purple-100 rounded-xl px-2.5 py-1 text-xs text-slate-600 font-medium shadow-2xs">
-            Tempo: <strong className="ml-1 text-slate-800 font-mono">{song.tempo_bpm} BPM</strong>
+            {t.tempo} <strong className="ml-1 text-slate-800 font-mono">{song.tempo_bpm} BPM</strong>
           </span>
 
           {capoAdvice.capoFret > 0 && viewMode === 'musician' && (
             <span className="inline-flex items-center gap-1.5 bg-purple-100/70 border border-purple-200 rounded-xl px-2.5 py-1 text-xs font-semibold text-purple-900 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-              <span>Capo Fret {capoAdvice.capoFret} ({capoAdvice.playKey} shapes)</span>
+              <span>{t.capoFret} {capoAdvice.capoFret} ({capoAdvice.playKey} {t.shapes})</span>
             </span>
           )}
         </div>
