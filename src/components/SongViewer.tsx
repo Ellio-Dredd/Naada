@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react';
 import { Song } from '@/types';
 import { parseChordPro, getCapoAdvice, transposeChord } from '@/lib/chordpro';
 import { ChordDiagramModal } from '@/components/ChordDiagramModal';
+import { MiniChordTooltip } from '@/components/MiniChordTooltip';
 import { Sparkles, ArrowLeft, Mic2, Music2, Minus, Plus } from 'lucide-react';
 
 interface SongViewerProps {
@@ -220,18 +221,23 @@ export function SongViewer({
                   key={`chunk-${lineIndex}-${chunkIndex}`}
                   className="flex flex-col flex-shrink-0 min-w-0"
                 >
-                  {/* Chord Tag Box */}
-                  <div className="h-5 flex items-end mb-0.5">
+                  {/* Chord Tag Box with Hover Mini Tooltip */}
+                  <div className="h-5 flex items-end mb-0.5 relative group/chord">
                     {chunk.chord ? (
-                      <button
-                        type="button"
-                        onClick={() => setSelectedChord(chunk.chord || null)}
-                        style={{ fontSize: chordFontSize }}
-                        className="font-mono font-bold text-purple-700 bg-purple-50 hover:bg-purple-600 hover:text-white px-1.5 py-0 rounded transition-all cursor-pointer shadow-2xs border border-purple-100 hover:border-purple-600 hover:scale-105 leading-tight"
-                        title={`Click to view ${chunk.chord} chord diagram`}
-                      >
-                        {chunk.chord}
-                      </button>
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedChord(chunk.chord || null)}
+                          style={{ fontSize: chordFontSize }}
+                          className="font-mono font-bold text-purple-700 bg-purple-50 hover:bg-purple-600 hover:text-white px-1.5 py-0 rounded transition-all cursor-pointer shadow-2xs border border-purple-100 hover:border-purple-600 hover:scale-105 leading-tight"
+                          title={`Click for full ${chunk.chord} diagram`}
+                        >
+                          {chunk.chord}
+                        </button>
+
+                        {/* Hover Mini Fretboard Tooltip */}
+                        <MiniChordTooltip chord={chunk.chord} />
+                      </>
                     ) : (
                       <span className="opacity-0 select-none text-[11px]">&nbsp;</span>
                     )}
