@@ -46,10 +46,10 @@ export function SongViewer({
 
   const currentKey = transposeChord(song.key, semitones);
 
-  // Dynamic font sizing multiplier
-  const chordFontSize = `${Math.round(14 * fontScale)}px`;
-  const lyricFontSize = `${Math.round(18 * fontScale)}px`;
-  const singerLyricFontSize = `${Math.round(24 * fontScale)}px`;
+  // Dynamic font sizing multiplier (compact & highly readable for multi-line visibility)
+  const chordFontSize = `${Math.round(12.5 * fontScale)}px`;
+  const lyricFontSize = `${Math.round(15 * fontScale)}px`;
+  const singerLyricFontSize = `${Math.round(20 * fontScale)}px`;
 
   return (
     <article className="w-full max-w-3xl mx-auto px-2 sm:px-6 pt-2 pb-44 animate-fade-in">
@@ -169,7 +169,7 @@ export function SongViewer({
       {/* Main Chord Manuscript Sheet */}
       <div
         className={`transition-all duration-300 ${
-          viewMode === 'singer' ? 'text-center space-y-9' : 'space-y-6'
+          viewMode === 'singer' ? 'text-center space-y-7' : 'space-y-3.5'
         }`}
       >
         {parsedLines.map((line, lineIndex) => {
@@ -178,9 +178,9 @@ export function SongViewer({
             return (
               <div
                 key={`sec-${lineIndex}`}
-                className="pt-6 pb-2 flex items-center gap-3"
+                className="pt-4 pb-1 flex items-center gap-3"
               >
-                <span className="font-mono text-xs font-bold tracking-wider uppercase text-purple-800 bg-purple-50 px-2.5 py-1 rounded-md border border-purple-200 flex-shrink-0">
+                <span className="font-mono text-xs font-bold tracking-wider uppercase text-purple-800 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200 flex-shrink-0">
                   {line.content}
                 </span>
                 <div className="h-px bg-purple-100 flex-1" />
@@ -190,7 +190,7 @@ export function SongViewer({
 
           // Empty spacing line
           if (line.type === 'empty') {
-            return <div key={`empty-${lineIndex}`} className="h-3" />;
+            return <div key={`empty-${lineIndex}`} className="h-2" />;
           }
 
           // Singer Mode: Centered, clean lyrics with chords hidden
@@ -200,7 +200,7 @@ export function SongViewer({
               <p
                 key={`singer-${lineIndex}`}
                 style={{ fontSize: singerLyricFontSize }}
-                className={`font-medium text-slate-800 leading-relaxed font-sinhala ${
+                className={`font-medium text-slate-800 leading-normal font-sinhala ${
                   useSinglish ? 'font-sans' : ''
                 }`}
               >
@@ -209,7 +209,7 @@ export function SongViewer({
             );
           }
 
-          // Musician View: Syllable-Locked Chords above Lyrics
+          // Musician View: Syllable-Locked Chords above Lyrics (Compact & Highly Visible)
           return (
             <div
               key={`musician-${lineIndex}`}
@@ -221,26 +221,26 @@ export function SongViewer({
                   className="flex flex-col flex-shrink-0 min-w-0"
                 >
                   {/* Chord Tag Box */}
-                  <div className="h-7 flex items-end">
+                  <div className="h-5 flex items-end mb-0.5">
                     {chunk.chord ? (
                       <button
                         type="button"
                         onClick={() => setSelectedChord(chunk.chord || null)}
                         style={{ fontSize: chordFontSize }}
-                        className="font-mono font-bold text-purple-700 bg-purple-50 hover:bg-purple-600 hover:text-white px-1.5 py-0.5 rounded transition-all cursor-pointer shadow-2xs border border-purple-100 hover:border-purple-600 hover:scale-105"
+                        className="font-mono font-bold text-purple-700 bg-purple-50 hover:bg-purple-600 hover:text-white px-1.5 py-0 rounded transition-all cursor-pointer shadow-2xs border border-purple-100 hover:border-purple-600 hover:scale-105 leading-tight"
                         title={`Click to view ${chunk.chord} chord diagram`}
                       >
                         {chunk.chord}
                       </button>
                     ) : (
-                      <span className="opacity-0 select-none text-[12px]">&nbsp;</span>
+                      <span className="opacity-0 select-none text-[11px]">&nbsp;</span>
                     )}
                   </div>
 
                   {/* Lyric Syllable */}
                   <div
                     style={{ fontSize: lyricFontSize }}
-                    className={`font-normal text-slate-800 leading-relaxed font-sinhala whitespace-pre select-text transition-colors ${
+                    className={`font-normal text-slate-800 leading-snug font-sinhala whitespace-pre select-text transition-colors ${
                       useSinglish ? 'font-sans' : ''
                     }`}
                   >
