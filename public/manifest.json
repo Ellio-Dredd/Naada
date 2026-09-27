@@ -1,0 +1,16 @@
+{
+  "name": "Naada (නාද) - Sinhala Guitar Chords & Jam",
+  "short_name": "Naada",
+  "description": "Modern Sinhala Guitar Chords & Realtime Jam Rooms",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

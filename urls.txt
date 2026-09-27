@@ -1,0 +1,643 @@
+# ==============================================================================
+# Naada (නාද) - Sinhala Guitar Chords Scraper Queue (200+ Popular Songs)
+# Run with: python scrape_chords.py --urls-file urls.txt
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# CLARENCE WIJEWARDENA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ada-andure-ma/
+https://www.sinhalasongbook.com/adareta-kiyana-katha-%e0%b6%86%e0%b6%af%e0%b6%bb%e0%b7%9a%e0%b6%a7-%e0%b6%9a%e0%b7%92%e0%b6%ba%e0%b6%b1-%e0%b6%9a%e0%b6%ad%e0%b7%8f/
+https://www.sinhalasongbook.com/andura-ira-%e0%b6%85%e0%b6%b3%e0%b7%94%e0%b6%bb-%e0%b6%89%e0%b6%bb%e0%b7%8f/
+https://www.sinhalasongbook.com/sihina-lowak-%e0%b7%83%e0%b7%92%e0%b7%84%e0%b7%92%e0%b6%b1-%e0%b6%bd%e0%b7%9c%e0%b7%80%e0%b6%9a%e0%b7%8a/
+https://www.sinhalasongbook.com/desa-piya-gath-kala-%e0%b6%af%e0%b7%91%e0%b7%83-%e0%b6%b4%e0%b7%92%e0%b6%ba%e0%b7%8f-%e0%b6%9c%e0%b6%ad%e0%b7%8a-%e0%b6%9a%e0%b6%bd/
+https://www.sinhalasongbook.com/deviyan-wahanse/
+https://www.sinhalasongbook.com/dewathawan-%e0%b6%af%e0%b7%9a%e0%b7%80%e0%b6%ad%e0%b7%8f%e0%b7%80%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/atha-epita-%e0%b6%88%e0%b6%ad-%e0%b6%91%e0%b6%b4%e0%b7%92%e0%b6%a7/
+https://www.sinhalasongbook.com/dineka-me-nadee-%e0%b6%af%e0%b7%92%e0%b6%b1%e0%b7%99%e0%b6%9a-%e0%b6%b8%e0%b7%9a-%e0%b6%b1%e0%b6%af%e0%b7%93/
+https://www.sinhalasongbook.com/duwa-ma-wage-%e0%b6%af%e0%b7%94%e0%b7%80-%e0%b6%b8%e0%b7%8f-%e0%b7%80%e0%b6%9c%e0%b7%9a/
+https://www.sinhalasongbook.com/gamen-liyumak-%e0%b6%9c%e0%b6%b8%e0%b7%99%e0%b6%b1%e0%b7%8a-%e0%b6%bd%e0%b7%92%e0%b6%ba%e0%b7%94%e0%b6%b8%e0%b6%9a%e0%b7%8a/
+https://www.sinhalasongbook.com/hada-mal-gomuwe/
+https://www.sinhalasongbook.com/hada-vile-%e0%b7%84%e0%b6%af-%e0%b7%80%e0%b7%92%e0%b6%bd%e0%b7%9a/
+https://www.sinhalasongbook.com/hanthane-manda-maruthe/
+https://www.sinhalasongbook.com/hindi-wadan-%e0%b7%84%e0%b7%92%e0%b6%82%e0%b6%af%e0%b7%92-%e0%b7%80%e0%b6%af%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/hiruge-lowedee-%e0%b7%84%e0%b7%92%e0%b6%bb%e0%b7%94%e0%b6%9c%e0%b7%9a-%e0%b6%bd%e0%b7%9c%e0%b7%80%e0%b7%9a%e0%b6%af%e0%b7%93/
+https://www.sinhalasongbook.com/kanda-suriduni-%e0%b6%9a%e0%b6%b3-%e0%b7%83%e0%b7%94%e0%b6%bb%e0%b7%92%e0%b6%b3%e0%b7%94%e0%b6%b1%e0%b7%92/
+https://www.sinhalasongbook.com/kandukaraye-seethale-%e0%b6%9a%e0%b6%b3%e0%b7%94%e0%b6%9a%e0%b6%bb%e0%b6%ba%e0%b7%9a-%e0%b7%83%e0%b7%93%e0%b6%ad%e0%b6%bd%e0%b7%9a/
+https://www.sinhalasongbook.com/kimada-nawe-%e0%b6%9a%e0%b7%92%e0%b6%b8%e0%b6%af-%e0%b6%b1%e0%b7%8f%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/kimada-nawe/
+https://www.sinhalasongbook.com/kiri-muhuda-%e0%b6%9a%e0%b7%92%e0%b6%bb%e0%b7%92-%e0%b6%b8%e0%b7%94%e0%b7%84%e0%b7%94%e0%b6%af-%e0%b6%9a%e0%b7%85%e0%b6%b9%e0%b7%8f%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/kiri-sudu-sele-%e0%b6%9a%e0%b7%92%e0%b6%bb%e0%b7%92-%e0%b7%83%e0%b7%94%e0%b6%af%e0%b7%94-%e0%b7%83%e0%b7%9a%e0%b6%bd%e0%b7%9a/
+https://www.sinhalasongbook.com/lapalu-sewane/
+https://www.sinhalasongbook.com/kumariyak-wage-%e0%b6%9a%e0%b7%94%e0%b6%b8%e0%b7%8f%e0%b6%bb%e0%b7%92%e0%b6%ba%e0%b6%9a%e0%b7%8a-%e0%b7%80%e0%b6%9c%e0%b7%9a/
+https://www.sinhalasongbook.com/mage-palpathe-%e0%b6%b8%e0%b6%9c%e0%b7%99-%e0%b6%b4%e0%b7%90%e0%b6%bd%e0%b7%8a%e0%b6%b4%e0%b6%ad%e0%b7%9a/
+https://www.sinhalasongbook.com/mahalu-wiye-gatha/
+https://www.sinhalasongbook.com/malaniye-ma/
+https://www.sinhalasongbook.com/malata-bambareku-se-%e0%b6%b8%e0%b6%bd%e0%b6%a7-%e0%b6%b6%e0%b6%b9%e0%b6%bb%e0%b7%99%e0%b6%9a%e0%b7%94-%e0%b7%83%e0%b7%9a/
+https://www.sinhalasongbook.com/male-handawe-%e0%b6%b8%e0%b6%bd%e0%b7%9a-%e0%b7%84%e0%b7%90%e0%b6%b1%e0%b7%8a%e0%b6%af%e0%b7%91%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/manamali-siriyawi-%e0%b6%b8%e0%b6%b1%e0%b6%b8%e0%b7%8f%e0%b6%bd%e0%b7%93-%e0%b7%83%e0%b7%92%e0%b6%bb%e0%b7%92%e0%b6%ba%e0%b7%8f%e0%b7%80%e0%b7%93/
+https://www.sinhalasongbook.com/maniyane-%e0%b6%b8%e0%b7%91%e0%b6%b1%e0%b7%92%e0%b6%ba%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/moratuwa-moratuwa-%e0%b6%b8%e0%b7%9c%e0%b6%bb%e0%b6%a7%e0%b7%94%e0%b7%80-%e0%b6%b8%e0%b7%9c%e0%b6%bb%e0%b6%a7%e0%b7%94%e0%b7%80/
+https://www.sinhalasongbook.com/muhudu-ralla-osse-%e0%b6%b8%e0%b7%94%e0%b7%84%e0%b7%94%e0%b6%af%e0%b7%94-%e0%b6%bb%e0%b7%90%e0%b6%bd%e0%b7%8a%e0%b6%bd-%e0%b6%94%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b7%9a/
+https://www.sinhalasongbook.com/muthu-menike/
+https://www.sinhalasongbook.com/muthu-warusawak-%e0%b6%b8%e0%b7%94%e0%b6%ad%e0%b7%94-%e0%b7%80%e0%b6%bb%e0%b7%94%e0%b7%83%e0%b7%8f%e0%b7%80%e0%b6%9a%e0%b7%8a/
+https://www.sinhalasongbook.com/muwa-hasrali/
+https://www.sinhalasongbook.com/namal-aye-%e0%b6%b1%e0%b7%8f%e0%b6%b8%e0%b6%bd%e0%b7%8a-%e0%b6%86%e0%b6%ba%e0%b7%9a/
+https://www.sinhalasongbook.com/pathum-lowe-muthu-%e0%b6%b4%e0%b7%90%e0%b6%ad%e0%b7%94%e0%b6%b8%e0%b7%8a-%e0%b6%bd%e0%b7%9c%e0%b7%80%e0%b7%9a-%e0%b6%b8%e0%b7%94%e0%b6%ad%e0%b7%94/
+https://www.sinhalasongbook.com/piyaba-yanawa-ma-%e0%b6%b4%e0%b7%92%e0%b6%ba%e0%b6%b9%e0%b7%8f-%e0%b6%ba%e0%b6%b1%e0%b7%80%e0%b7%8f-%e0%b6%b8%e0%b7%8f/
+https://www.sinhalasongbook.com/ra-seetha-nalawal/
+
+# ------------------------------------------------------------------------------
+# GUNADASA KAPUGE
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/abhisarikawange-%e0%b6%85%e0%b6%b7%e0%b7%92%e0%b7%83%e0%b7%8f%e0%b6%bb%e0%b7%92%e0%b6%9a%e0%b7%8f%e0%b7%80%e0%b6%b1%e0%b7%8a%e0%b6%9c%e0%b7%9a/
+https://www.sinhalasongbook.com/ahasa-usata-%e0%b6%85%e0%b7%84%e0%b7%83-%e0%b6%8b%e0%b7%83%e0%b6%a7/
+https://www.sinhalasongbook.com/awado-sansare-%e0%b6%86%e0%b7%80%e0%b7%8f%e0%b6%af%e0%b7%9d/
+https://www.sinhalasongbook.com/ayiyandiye/
+https://www.sinhalasongbook.com/bimbarak-senaga-%e0%b6%b6%e0%b7%92%e0%b6%b8%e0%b7%8a%e0%b6%b6%e0%b6%bb%e0%b6%9a%e0%b7%8a/
+https://www.sinhalasongbook.com/bindu-bindu-tharaka-%e0%b6%b6%e0%b7%92%e0%b6%82%e0%b6%af%e0%b7%94-%e0%b6%b6%e0%b7%92%e0%b6%82%e0%b6%af%e0%b7%94-%e0%b6%ad%e0%b7%8f%e0%b6%bb%e0%b6%9a%e0%b7%8f/
+https://www.sinhalasongbook.com/birinda-mage-oba-%e0%b6%b6%e0%b7%92%e0%b6%bb%e0%b7%92%e0%b6%b3-%e0%b6%b8%e0%b6%9c%e0%b7%9a-%e0%b6%94%e0%b6%b6/
+https://www.sinhalasongbook.com/dam-patin-la-%e0%b6%af%e0%b6%b8%e0%b7%8a-%e0%b6%b4%e0%b7%8f%e0%b6%a7%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/dawasak-pala-nethi-%e0%b6%af%e0%b7%80%e0%b7%83%e0%b6%9a%e0%b7%8a-%e0%b6%b4%e0%b7%90%e0%b6%bd/
+https://www.sinhalasongbook.com/desa-nilupul-%e0%b6%af%e0%b7%91%e0%b7%83-%e0%b6%b1%e0%b7%92%e0%b7%85%e0%b7%94%e0%b6%b4%e0%b7%94%e0%b6%bd%e0%b7%8a/
+https://www.sinhalasongbook.com/dethola-nokee-de-%e0%b6%af%e0%b7%99%e0%b6%ad%e0%b7%9c%e0%b6%bd-%e0%b6%b1%e0%b7%9c%e0%b6%9a%e0%b7%93/
+https://www.sinhalasongbook.com/domba-mal-kalawe-%e0%b6%af%e0%b7%9c%e0%b6%b9-%e0%b6%b8%e0%b6%bd%e0%b7%8a-%e0%b6%9a%e0%b7%90%e0%b6%bd%e0%b7%91%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/duka-hadu-dena-%e0%b6%af%e0%b7%94%e0%b6%9a-%e0%b7%84%e0%b7%8f%e0%b6%af%e0%b7%94-%e0%b6%af%e0%b7%99%e0%b6%b1/
+https://www.sinhalasongbook.com/man-hinda-obe/
+https://www.sinhalasongbook.com/man-mula-wee-%e0%b6%b8%e0%b6%82-%e0%b6%b8%e0%b7%94%e0%b6%bd%e0%b7%8f-%e0%b7%80%e0%b7%93/
+https://www.sinhalasongbook.com/nambara-goyamata-%e0%b6%b1%e0%b7%8f%e0%b6%b9%e0%b6%bb-%e0%b6%9c%e0%b7%9c%e0%b6%ba%e0%b6%b8%e0%b6%a7/
+https://www.sinhalasongbook.com/ninda-nethi-raye-%e0%b6%b1%e0%b7%92%e0%b6%b1%e0%b7%8a%e0%b6%af-%e0%b6%b1%e0%b7%90%e0%b6%ad%e0%b7%92-%e0%b6%bb%e0%b7%90%e0%b6%ba%e0%b7%9a/
+https://www.sinhalasongbook.com/oba-pem-karana-%e0%b6%94%e0%b6%b6-%e0%b6%b4%e0%b7%99%e0%b6%b8%e0%b7%8a-%e0%b6%9a%e0%b6%bb%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/ruwak-adenawa-%e0%b6%bb%e0%b7%94%e0%b7%80%e0%b6%9a%e0%b7%8a-%e0%b6%87%e0%b6%af%e0%b7%99%e0%b6%b1%e0%b7%80%e0%b7%8f/
+https://www.sinhalasongbook.com/sabanda-api-%e0%b7%83%e0%b6%b6%e0%b6%b3-%e0%b6%85%e0%b6%b4%e0%b7%92-%e0%b6%9a%e0%b6%b3%e0%b7%94/
+https://www.sinhalasongbook.com/sanda-re-sihinaye-%e0%b7%83%e0%b6%b3-%e0%b6%bb%e0%b7%91/
+https://www.sinhalasongbook.com/seethala-sanda-eliye-%e0%b7%83%e0%b7%93%e0%b6%ad%e0%b6%bd-%e0%b7%83%e0%b6%b3-%e0%b6%91%e0%b7%85%e0%b7%92%e0%b6%ba%e0%b7%9a-2/
+https://www.sinhalasongbook.com/senehe-sithin-%e0%b7%83%e0%b7%99%e0%b6%b1%e0%b7%99%e0%b7%84%e0%b7%99-%e0%b7%83%e0%b7%92%e0%b6%ad%e0%b7%92%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/sinhala-sindu-kiyana-%e0%b7%83%e0%b7%92%e0%b6%82%e0%b7%84%e0%b6%bd-%e0%b7%83%e0%b7%92%e0%b6%82%e0%b6%af%e0%b7%94-%e0%b6%9a%e0%b7%92%e0%b6%ba%e0%b6%b1/
+https://www.sinhalasongbook.com/situ-kumariye-%e0%b7%83%e0%b7%92%e0%b6%a7%e0%b7%94-%e0%b6%9a%e0%b7%94%e0%b6%b8%e0%b7%8f%e0%b6%bb%e0%b7%92%e0%b6%ba%e0%b7%9a/
+https://www.sinhalasongbook.com/sudu-nanda-ai-%e0%b7%83%e0%b7%94%e0%b6%af%e0%b7%94-%e0%b6%b1%e0%b7%90%e0%b6%b1%e0%b7%8a%e0%b6%af%e0%b7%8f-%e0%b6%87%e0%b6%ba%e0%b7%92/
+https://www.sinhalasongbook.com/tharu-mal-yayama-%e0%b6%ad%e0%b6%bb%e0%b7%94-%e0%b6%b8%e0%b6%bd%e0%b7%8a-%e0%b6%ba%e0%b7%8f%e0%b6%ba%e0%b6%b8/
+https://www.sinhalasongbook.com/ulaleno-%e0%b6%8b%e0%b7%85%e0%b6%bd%e0%b7%9a%e0%b6%b1%e0%b7%9d/
+https://www.sinhalasongbook.com/unmada-sithuwam-%e0%b6%8b%e0%b6%b1%e0%b7%8a%e0%b6%b8%e0%b7%8f%e0%b6%af-%e0%b7%83%e0%b7%92%e0%b6%ad%e0%b7%94%e0%b7%80%e0%b6%b8%e0%b7%8a/
+https://www.sinhalasongbook.com/uthuru-kone-%e0%b6%8b%e0%b6%ad%e0%b7%94%e0%b6%bb%e0%b7%94-%e0%b6%9a%e0%b7%9c%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/viduli-mini-pahan-%e0%b7%80%e0%b7%92%e0%b6%af%e0%b7%94%e0%b6%bd%e0%b7%92-%e0%b6%b8%e0%b7%92%e0%b6%ab%e0%b7%92-%e0%b6%b4%e0%b7%84%e0%b6%b1%e0%b7%8a/
+
+# ------------------------------------------------------------------------------
+# H. R. JOTHIPALA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ada-amuthuma-reyaki-%e0%b6%85%e0%b6%af-%e0%b6%85%e0%b6%b8%e0%b7%94%e0%b6%ad%e0%b7%94%e0%b6%b8-%e0%b6%bb%e0%b7%90%e0%b6%ba%e0%b6%9a%e0%b7%92/
+https://www.sinhalasongbook.com/adanne-ai-%e0%b6%85%e0%b6%ac%e0%b6%b1%e0%b7%8a%e0%b6%b1%e0%b7%99-%e0%b6%87%e0%b6%ba%e0%b7%92/
+https://www.sinhalasongbook.com/adara-mal-pawane/
+https://www.sinhalasongbook.com/adare-hithenawa-%e0%b6%86%e0%b6%af%e0%b6%bb%e0%b7%9a-%e0%b7%84%e0%b7%92%e0%b6%ad%e0%b7%99%e0%b6%b1%e0%b7%80%e0%b7%8f/
+https://www.sinhalasongbook.com/amara-pem-lathawe-%e0%b6%85%e0%b6%b8%e0%b6%bb-%e0%b6%b4%e0%b7%99%e0%b6%b8%e0%b7%8a-%e0%b6%bd%e0%b6%ad%e0%b7%8f%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/api-denna-pokunai-%e0%b6%85%e0%b6%b4%e0%b7%92-%e0%b6%af%e0%b7%99%e0%b6%b1%e0%b7%8a%e0%b6%b1%e0%b7%8f-%e0%b6%b4%e0%b7%9c%e0%b6%9a%e0%b7%94%e0%b6%ab%e0%b6%ba%e0%b7%92/
+https://www.sinhalasongbook.com/ashawe-ashawe-%e0%b6%86%e0%b7%81%e0%b7%8f%e0%b7%80%e0%b7%9a-%e0%b6%86%e0%b7%81%e0%b7%8f%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/awa-soya-adare-%e0%b6%86%e0%b7%80%e0%b7%8f-%e0%b7%83%e0%b7%9c%e0%b6%ba%e0%b7%8f-%e0%b6%86%e0%b6%af%e0%b6%bb%e0%b7%9a/
+https://www.sinhalasongbook.com/bambara-wage-atha-%e0%b6%b6%e0%b6%b9%e0%b6%bb%e0%b7%8f-%e0%b7%80%e0%b6%9c%e0%b7%9a-%e0%b6%87%e0%b6%ad/
+https://www.sinhalasongbook.com/chandana-allen-%e0%b6%a0%e0%b6%b1%e0%b7%8a%e0%b6%af%e0%b6%b1-%e0%b6%87%e0%b6%bd%e0%b7%8a%e0%b6%bd%e0%b7%99%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/chandra-me-re/
+https://www.sinhalasongbook.com/dakina-dasune-%e0%b6%af%e0%b6%9a%e0%b7%92%e0%b6%b1-%e0%b6%af%e0%b7%83%e0%b7%94%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/dili-dili-dilisewi-%e0%b6%af%e0%b7%92%e0%b6%bd%e0%b7%92-%e0%b6%af%e0%b7%92%e0%b6%bd%e0%b7%92-%e0%b6%af%e0%b7%92%e0%b6%bd%e0%b7%93%e0%b7%83%e0%b7%9a%e0%b7%80%e0%b7%92/
+https://www.sinhalasongbook.com/diya-kinduriya-se-%e0%b6%af%e0%b7%92%e0%b6%ba-%e0%b6%9a%e0%b7%92%e0%b6%b3%e0%b7%94%e0%b6%bb%e0%b7%92%e0%b6%ba-%e0%b7%83%e0%b7%9a/
+https://www.sinhalasongbook.com/diya-podak-wemin-%e0%b6%af%e0%b7%92%e0%b6%ba-%e0%b6%b4%e0%b7%9c%e0%b6%af%e0%b6%9a%e0%b7%8a-%e0%b7%80%e0%b7%99%e0%b6%b8%e0%b7%92%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/dolos-mahe-%e0%b6%af%e0%b7%9c%e0%b7%85%e0%b7%9c%e0%b7%83%e0%b7%8a%e0%b6%b8%e0%b7%84%e0%b7%9a-%e0%b6%b4%e0%b7%84%e0%b6%b1/
+https://www.sinhalasongbook.com/dothin-dothai-%e0%b6%af%e0%b7%9d%e0%b6%ad%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%af%e0%b7%9d%e0%b6%ad%e0%b6%ba%e0%b7%92%e0%b6%9a%e0%b7%94%e0%b6%bb%e0%b7%94-%e0%b6%9a%e0%b7%96/
+https://www.sinhalasongbook.com/durakathanayakin-%e0%b6%af%e0%b7%94%e0%b6%bb%e0%b6%9a%e0%b6%ad%e0%b6%b1%e0%b6%ba%e0%b6%9a%e0%b7%92%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/etha-dilisena-%e0%b6%88%e0%b6%ad-%e0%b6%af%e0%b7%92%e0%b6%bd%e0%b7%92%e0%b7%83%e0%b7%99%e0%b6%b1/
+https://www.sinhalasongbook.com/gedara-hitiya-rosa-%e0%b6%9c%e0%b7%99%e0%b6%af%e0%b6%bb-%e0%b7%84%e0%b7%92%e0%b6%a7%e0%b7%92%e0%b6%ba-%e0%b6%bb%e0%b7%9d%e0%b7%83%e0%b7%8f/
+https://www.sinhalasongbook.com/hada-viman-dorin-%e0%b7%84%e0%b6%af-%e0%b7%80%e0%b7%92%e0%b6%b8%e0%b6%b1%e0%b7%8a-%e0%b6%af%e0%b7%9c%e0%b6%bb%e0%b7%92%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/tin-ekak-%e0%b7%84%e0%b7%92%e0%b7%83%e0%b7%8a-%e0%b6%a7%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%91%e0%b6%9a%e0%b6%9a%e0%b7%8a/
+https://www.sinhalasongbook.com/hitinna-poddak/
+https://www.sinhalasongbook.com/honda-siriyawai-%e0%b7%84%e0%b7%9c%e0%b6%b3-%e0%b7%83%e0%b7%92%e0%b6%bb%e0%b7%92%e0%b6%ba%e0%b7%8f%e0%b7%80%e0%b6%ba%e0%b7%92/
+https://www.sinhalasongbook.com/ipadee-lowe/
+https://www.sinhalasongbook.com/ira-sanda-wendala-%e0%b6%89%e0%b6%bb-%e0%b7%83%e0%b6%b3-%e0%b7%80%e0%b7%90%e0%b6%b3%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/jeevithe-tharuna-kale-%e0%b6%a2%e0%b7%93%e0%b7%80%e0%b7%92%e0%b6%ad%e0%b7%9a-%e0%b6%ad%e0%b6%bb%e0%b7%94%e0%b6%ab-%e0%b6%9a%e0%b7%8f%e0%b6%bd%e0%b7%9a/
+https://www.sinhalasongbook.com/kalak-thisse-%e0%b6%9a%e0%b6%bd%e0%b6%9a%e0%b7%8a-%e0%b6%ad%e0%b7%92%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b7%9a-2/
+https://www.sinhalasongbook.com/kawda-oba-kawrundo-%e0%b6%9a%e0%b7%80%e0%b7%94%e0%b6%af-%e0%b6%94%e0%b6%b6-%e0%b6%9a%e0%b7%80%e0%b7%94%e0%b6%bb%e0%b7%94%e0%b6%b1%e0%b7%8a%e0%b6%af%e0%b7%9d/
+https://www.sinhalasongbook.com/keewemi-obahata-%e0%b6%9a%e0%b7%93%e0%b7%80%e0%b7%99%e0%b6%b8%e0%b7%92-%e0%b6%94%e0%b6%b6%e0%b7%84%e0%b6%a7/
+https://www.sinhalasongbook.com/kiri-ithirewa-%e0%b6%9a%e0%b7%92%e0%b6%bb%e0%b7%92-%e0%b6%89%e0%b6%ad%e0%b7%92%e0%b6%bb%e0%b7%9a%e0%b7%80%e0%b7%8f/
+https://www.sinhalasongbook.com/kodi-gaha-yata-%e0%b6%9a%e0%b7%9c%e0%b6%a9%e0%b7%92-%e0%b6%9c%e0%b7%84-%e0%b6%ba%e0%b6%a7/
+https://www.sinhalasongbook.com/kokilaya-keviliya-ha-%e0%b6%9a%e0%b7%9d%e0%b6%9a%e0%b7%92%e0%b6%bd%e0%b6%ba%e0%b7%8f-%e0%b6%9a%e0%b7%99%e0%b7%80%e0%b7%92%e0%b6%bd%e0%b7%92%e0%b6%ba-%e0%b7%84%e0%b7%8f/
+https://www.sinhalasongbook.com/kothanaka-sitiyath-%e0%b6%9a%e0%b7%9c%e0%b6%ad%e0%b7%90%e0%b6%b1%e0%b6%9a-%e0%b7%83%e0%b7%92%e0%b6%a7%e0%b7%92%e0%b6%ba%e0%b6%ad%e0%b7%8a/
+https://www.sinhalasongbook.com/koyi-yanne-%e0%b6%9a%e0%b7%9c%e0%b6%ba%e0%b7%92-%e0%b6%ba%e0%b6%b1%e0%b7%8a%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/kalak-thisse-%e0%b6%9a%e0%b6%bd%e0%b6%9a%e0%b7%8a-%e0%b6%ad%e0%b7%92%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b7%9a/
+https://www.sinhalasongbook.com/lassanai-balanna-%e0%b6%bd%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b6%b1%e0%b6%ba%e0%b7%92-%e0%b6%b6%e0%b6%bd%e0%b6%b1%e0%b7%8a%e0%b6%b1/
+https://www.sinhalasongbook.com/lokaye-wenas-une-%e0%b6%bd%e0%b7%9d%e0%b6%9a%e0%b6%ba%e0%b7%9a-%e0%b7%80%e0%b7%99%e0%b6%b1%e0%b7%83%e0%b7%8a-%e0%b6%8b%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/ma-prarthana/
+https://www.sinhalasongbook.com/mage-mathake-obe-%e0%b6%b8%e0%b7%8f%e0%b6%9c%e0%b7%99-%e0%b6%b8%e0%b6%ad%e0%b6%9a%e0%b7%9a/
+
+# ------------------------------------------------------------------------------
+# KARUNARATNA DIVULGANE
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adaraya-sundara-waradaki/
+https://www.sinhalasongbook.com/andara-yaye/
+https://www.sinhalasongbook.com/asata-asuwana/
+https://www.sinhalasongbook.com/atheethaya-sihinayak/
+https://www.sinhalasongbook.com/dura-atha-wuwada/
+https://www.sinhalasongbook.com/dura-kathara-gewagena/
+https://www.sinhalasongbook.com/gahaka-mal-pipila/
+https://www.sinhalasongbook.com/gamata-kalin-hiru/
+https://www.sinhalasongbook.com/kohe-ho-numba/
+https://www.sinhalasongbook.com/konda-kirilliye/
+https://www.sinhalasongbook.com/la-dalu-bo-path/
+https://www.sinhalasongbook.com/ma-obath-ekka/
+https://www.sinhalasongbook.com/mage-duwe-oba/
+https://www.sinhalasongbook.com/mage-pem-lowa-sihasun/
+https://www.sinhalasongbook.com/mala-giraviye/
+https://www.sinhalasongbook.com/mudu-muhune/
+https://www.sinhalasongbook.com/nethata-ulelak/
+https://www.sinhalasongbook.com/oba-ma-hamuwuna/
+https://www.sinhalasongbook.com/obata-waram-nathi/
+https://www.sinhalasongbook.com/paya-nagee-evi/
+https://www.sinhalasongbook.com/pem-kawak-liyu/
+https://www.sinhalasongbook.com/pivithuruya-palamu-pema/
+https://www.sinhalasongbook.com/premaye-mandahasini/
+https://www.sinhalasongbook.com/robarosiya-hewane/
+https://www.sinhalasongbook.com/rosa-thol-sibimi/
+https://www.sinhalasongbook.com/samanala-wewa/
+https://www.sinhalasongbook.com/sangawanna-epa/
+https://www.sinhalasongbook.com/sulanga-numba-wagei/
+https://www.sinhalasongbook.com/uthurin-ena/
+
+# ------------------------------------------------------------------------------
+# KASUN KALHARA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adara-mal-wala/
+https://www.sinhalasongbook.com/adaraniya-wassane/
+https://www.sinhalasongbook.com/alaye-gatha/
+https://www.sinhalasongbook.com/mal-mitak-thiyanna/
+https://www.sinhalasongbook.com/sanda-mithuri/
+
+# ------------------------------------------------------------------------------
+# KEERTHI PASQUEL
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adare-sitha-sanasana/
+https://www.sinhalasongbook.com/bolanda-katha-kiyala/
+https://www.sinhalasongbook.com/chikitha-linda/
+https://www.sinhalasongbook.com/issara-adi-kale/
+https://www.sinhalasongbook.com/kawikariye/
+https://www.sinhalasongbook.com/neela-ahase/
+https://www.sinhalasongbook.com/oba-ma-hamuwu/
+https://www.sinhalasongbook.com/poojaneeya-wu/
+https://www.sinhalasongbook.com/ran-tharu-payana/
+https://www.sinhalasongbook.com/sandalatha-payala/
+https://www.sinhalasongbook.com/sinhala-raja-kale/
+https://www.sinhalasongbook.com/thawa-dawasak/
+
+# ------------------------------------------------------------------------------
+# M. S. FERNANDO
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ashoka-mal-mala/
+https://www.sinhalasongbook.com/awurudu-panas-thunai/
+https://www.sinhalasongbook.com/bola-bola-mati/
+https://www.sinhalasongbook.com/galkisse-hotale/
+https://www.sinhalasongbook.com/kekiri-pelena/
+https://www.sinhalasongbook.com/lassana-amba-gasak/
+https://www.sinhalasongbook.com/lassana-rosa-malak/
+https://www.sinhalasongbook.com/mal-yahanawaki-loke/
+https://www.sinhalasongbook.com/mama-enne-dubai/
+https://www.sinhalasongbook.com/manike-mama-aye/
+https://www.sinhalasongbook.com/muthu-sewwemi/
+https://www.sinhalasongbook.com/nelum-male-pethi/
+https://www.sinhalasongbook.com/oba-dakina-dakina/
+https://www.sinhalasongbook.com/obage-ruwa-magemai/
+https://www.sinhalasongbook.com/obata-thibena-adare/
+https://www.sinhalasongbook.com/pem-lowa-nindedi/
+https://www.sinhalasongbook.com/rasa-ahara-kawala/
+https://www.sinhalasongbook.com/sawandara-sugandhayen/
+https://www.sinhalasongbook.com/thatiya-madde/
+https://www.sinhalasongbook.com/wasanawa-dora-arala-%e0%b7%80%e0%b7%8f%e0%b7%83%e0%b6%b1%e0%b7%8f%e0%b7%80-%e0%b6%af%e0%b7%9c%e0%b6%bb-%e0%b6%87%e0%b6%bb%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/yanawita-pare-%e0%b6%ba%e0%b6%b1%e0%b7%80%e0%b7%92%e0%b6%a7-%e0%b6%b4%e0%b7%8f%e0%b6%bb%e0%b7%9a/
+
+# ------------------------------------------------------------------------------
+# MILTON MALLAWARACHCHI
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ada-heta-oba-ma/
+https://www.sinhalasongbook.com/ama-ran-hengum/
+https://www.sinhalasongbook.com/atheethye-pawa/
+https://www.sinhalasongbook.com/awasara-netha-mata/
+https://www.sinhalasongbook.com/dasa-ridenawa/
+https://www.sinhalasongbook.com/davasak-thiyewee/
+https://www.sinhalasongbook.com/deadara-wilikun/
+https://www.sinhalasongbook.com/dineka-ransalu/
+https://www.sinhalasongbook.com/eda-rae/
+https://www.sinhalasongbook.com/ey-wage-dinak/
+https://www.sinhalasongbook.com/gamanae-gim/
+https://www.sinhalasongbook.com/gana-andure/
+https://www.sinhalasongbook.com/hada-pathule/
+https://www.sinhalasongbook.com/handannepa-den/
+https://www.sinhalasongbook.com/himinsere-paa-nagana/
+https://www.sinhalasongbook.com/iwuru-thala/
+https://www.sinhalasongbook.com/kalak-awamen/
+https://www.sinhalasongbook.com/kandan-yannam/
+https://www.sinhalasongbook.com/kandu-paara-eatha/
+https://www.sinhalasongbook.com/kawuruda-pawee/
+https://www.sinhalasongbook.com/keena-dan-mitak/
+https://www.sinhalasongbook.com/kese-kiyannada/
+https://www.sinhalasongbook.com/ma-ha-eda/
+https://www.sinhalasongbook.com/ma-ha-senehasa-pala/
+https://www.sinhalasongbook.com/ma-neth-kedelle/
+https://www.sinhalasongbook.com/ma-nisa-oba/
+https://www.sinhalasongbook.com/madhu-mala-lesa/
+https://www.sinhalasongbook.com/maga-thotadee/
+https://www.sinhalasongbook.com/mage-punchi-kumari/
+https://www.sinhalasongbook.com/mata-men-ohutada/
+https://www.sinhalasongbook.com/me-meyi-gaha-yata/
+https://www.sinhalasongbook.com/miyuru-pem-madirawe/
+https://www.sinhalasongbook.com/nilla-nagana/
+https://www.sinhalasongbook.com/oba-den-keewath/
+https://www.sinhalasongbook.com/oba-gawa-mama-innemi/
+https://www.sinhalasongbook.com/oba-ma-pelu-da/
+https://www.sinhalasongbook.com/oba-venuwen-ma/
+https://www.sinhalasongbook.com/obai-mamai-mewu/
+https://www.sinhalasongbook.com/obe-nil-nuwan/
+https://www.sinhalasongbook.com/oruwaka-paawena/
+
+# ------------------------------------------------------------------------------
+# NAMAL UDUGAMA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adare-bindee/
+https://www.sinhalasongbook.com/apa-hamuweema-wenweema/
+https://www.sinhalasongbook.com/basa-yana-sanda/
+https://www.sinhalasongbook.com/lowama-nidana-rathriye/
+https://www.sinhalasongbook.com/ma-muwa-agin/
+https://www.sinhalasongbook.com/nisala-wela-hada/
+https://www.sinhalasongbook.com/oba-mula-wee/
+https://www.sinhalasongbook.com/ra-sihinen/
+https://www.sinhalasongbook.com/rosa-mal-pata/
+https://www.sinhalasongbook.com/samuganne-na/
+https://www.sinhalasongbook.com/sihinen-sihinen/
+https://www.sinhalasongbook.com/sithul-pawwa/
+https://www.sinhalasongbook.com/wedana-denne-na/
+https://www.sinhalasongbook.com/wessanthara-biso/
+
+# ------------------------------------------------------------------------------
+# NANDA MALANI
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adaraye-wedanawa/
+https://www.sinhalasongbook.com/ahasa-se-oba/
+https://www.sinhalasongbook.com/ammawarune/
+https://www.sinhalasongbook.com/araliya-landata/
+https://www.sinhalasongbook.com/ayanna-kiyanna/
+https://www.sinhalasongbook.com/buddhanubhawena/
+https://www.sinhalasongbook.com/budu-karuna/
+https://www.sinhalasongbook.com/budu-sadu-sandun-gasak/
+https://www.sinhalasongbook.com/chandra-madulu-yata/
+https://www.sinhalasongbook.com/deno-dahak-nuwan/
+https://www.sinhalasongbook.com/galana-gangaki/
+https://www.sinhalasongbook.com/hada-wila-kalabana/
+https://www.sinhalasongbook.com/kadamandiye/
+https://www.sinhalasongbook.com/kala-wewen-gath/
+https://www.sinhalasongbook.com/kap-suwahas-kal/
+https://www.sinhalasongbook.com/kurutu-ga-gee/
+https://www.sinhalasongbook.com/lowama-epa-wee/
+https://www.sinhalasongbook.com/ma-handana-kandulu/
+https://www.sinhalasongbook.com/mage-deshaya/
+https://www.sinhalasongbook.com/mage-sanda-oba/
+https://www.sinhalasongbook.com/malakin-malakata/
+https://www.sinhalasongbook.com/malata-renu-se/
+https://www.sinhalasongbook.com/manda-nawa-karanawa/
+https://www.sinhalasongbook.com/me-sinhala-apage/
+https://www.sinhalasongbook.com/mihimadale/
+https://www.sinhalasongbook.com/muni-siripa/
+https://www.sinhalasongbook.com/nisansala-ra/
+https://www.sinhalasongbook.com/obai-ramya-sanda/
+https://www.sinhalasongbook.com/osari-potin/
+https://www.sinhalasongbook.com/pera-da-maha-re/
+https://www.sinhalasongbook.com/poojasanaye/
+https://www.sinhalasongbook.com/ran-kenden-banda/
+https://www.sinhalasongbook.com/raththaran-duwe/
+https://www.sinhalasongbook.com/ruk-aththana-mala/
+https://www.sinhalasongbook.com/ruwal-iree-giya/
+https://www.sinhalasongbook.com/sanda-kaluwara/
+https://www.sinhalasongbook.com/sansara-sagare/
+https://www.sinhalasongbook.com/sudu-hamine/
+
+# ------------------------------------------------------------------------------
+# NEELA WICKRAMASINGHE
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/atha-duraka/
+https://www.sinhalasongbook.com/bodhiye-viharaye/
+https://www.sinhalasongbook.com/daruwo-athi-ammala/
+https://www.sinhalasongbook.com/daskon-sakisanda/
+https://www.sinhalasongbook.com/dawasak-da-re/
+https://www.sinhalasongbook.com/mage-lowata-oba/
+https://www.sinhalasongbook.com/me-awanhale/
+https://www.sinhalasongbook.com/midule-athana-nango/
+https://www.sinhalasongbook.com/obage-sewane/
+https://www.sinhalasongbook.com/panam-aten-master-sir/
+https://www.sinhalasongbook.com/parami-dam/
+https://www.sinhalasongbook.com/pem-sililare-2/
+https://www.sinhalasongbook.com/piyaman-keruwemu/
+https://www.sinhalasongbook.com/rahase-handana-%e0%b6%bb%e0%b7%84%e0%b7%83%e0%b7%9a-%e0%b7%84%e0%b6%ac%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/ran-tikiri-sina-%e0%b6%bb%e0%b6%b1%e0%b7%8a-%e0%b6%a7%e0%b7%92%e0%b6%9a%e0%b7%92%e0%b6%bb%e0%b7%92-%e0%b7%83%e0%b7%92%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/sudu-muthu-rala-pela/
+https://www.sinhalasongbook.com/suwandathi-kusumaka/
+https://www.sinhalasongbook.com/thun-sitha-dahan/
+https://www.sinhalasongbook.com/viyo-gee-gayena/
+
+# ------------------------------------------------------------------------------
+# NIROSHA VIRAJINI
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/dedunne-sath-pata/
+https://www.sinhalasongbook.com/duhul-malaka/
+https://www.sinhalasongbook.com/dunnu-wedana/
+https://www.sinhalasongbook.com/igilenna-thahanam/
+https://www.sinhalasongbook.com/madhura-yame-%e0%b6%b8%e0%b6%b0%e0%b7%94%e0%b6%bb-%e0%b6%ba%e0%b7%8f%e0%b6%b8%e0%b7%9a/
+https://www.sinhalasongbook.com/pun-sanda-reta/
+https://www.sinhalasongbook.com/ra-dolos-paye/
+https://www.sinhalasongbook.com/ran-gira-ma/
+https://www.sinhalasongbook.com/sanda-diya-uthura/
+https://www.sinhalasongbook.com/sanda-sakki/
+https://www.sinhalasongbook.com/sanda-sisile/
+https://www.sinhalasongbook.com/sanda-thaniyama/
+https://www.sinhalasongbook.com/seegiri-geeyak/
+https://www.sinhalasongbook.com/sina-thotak-viya/
+https://www.sinhalasongbook.com/sinasenna-mata/
+https://www.sinhalasongbook.com/sudu-ath-powwek/
+
+# ------------------------------------------------------------------------------
+# PRIYA SOORIYASENA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adaraneeya-neranjana-%e0%b6%86%e0%b6%af%e0%b6%bb%e0%b6%ab%e0%b7%93%e0%b6%ba-%e0%b6%b1%e0%b7%9a%e0%b6%bb%e0%b6%82%e0%b6%a2%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/adare-kiyu/
+https://www.sinhalasongbook.com/apasu-enawa-%e0%b6%86%e0%b6%b4%e0%b7%83%e0%b7%94-%e0%b6%91%e0%b6%b1%e0%b7%80%e0%b7%8f/
+https://www.sinhalasongbook.com/asurin-mideela-%e0%b6%87%e0%b7%83%e0%b7%94%e0%b6%bb%e0%b7%99%e0%b6%b1%e0%b7%8a-%e0%b6%b8%e0%b7%92%e0%b6%af%e0%b7%93%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/atha-ran-viman-%e0%b6%88%e0%b6%ad-%e0%b6%bb%e0%b6%b1%e0%b7%8a-%e0%b7%80%e0%b7%92%e0%b6%b8%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/bingu-welapeela-%e0%b6%b6%e0%b7%92%e0%b6%9f%e0%b7%94-%e0%b7%80%e0%b7%90%e0%b6%bd%e0%b6%b4%e0%b7%93%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/ekama-weediye/
+https://www.sinhalasongbook.com/ekama-weediye-2/
+https://www.sinhalasongbook.com/gela-wata-banda-wu/
+https://www.sinhalasongbook.com/hadawatha-illa-%e0%b7%84%e0%b6%af%e0%b7%80%e0%b6%ad-%e2%80%8d%e0%b6%89%e0%b6%bd%e0%b7%8a%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/harada-viman-%e0%b7%84%e0%b7%90%e0%b6%bb%e0%b6%af%e0%b7%8f-%e0%b7%80%e0%b7%92%e0%b6%b8%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/heta-dawase-%e0%b7%84%e0%b7%99%e0%b6%a7-%e0%b6%af%e0%b7%80%e0%b7%83%e0%b7%9a/
+https://www.sinhalasongbook.com/hiruda-muwawee-%e0%b7%84%e0%b7%92%e0%b6%bb%e0%b7%94%e0%b6%af-%e0%b6%b8%e0%b7%94%e0%b7%80%e0%b7%8f-%e0%b7%80%e0%b7%93/
+https://www.sinhalasongbook.com/issara-ma-oba-%e0%b6%89%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b6%bb-%e0%b6%b8%e0%b7%8f-%e0%b6%94%e0%b6%b6/
+https://www.sinhalasongbook.com/jeevithe-mage-%e0%b6%a2%e0%b7%93%e0%b7%80%e0%b7%92%e0%b6%ad%e0%b7%9a-%e0%b6%b8%e0%b6%9c%e0%b7%9a-%e0%b6%94%e0%b6%ba%e0%b7%8f/
+https://www.sinhalasongbook.com/lihinin-rana-piya-%e0%b6%bd%e0%b7%92%e0%b7%84%e0%b7%92%e0%b6%ab%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%bb%e0%b7%91%e0%b6%b1-%e0%b6%b4%e0%b7%92%e0%b6%ba%e0%b7%8f/
+https://www.sinhalasongbook.com/mage-lamada-%e0%b6%b8%e0%b6%9c%e0%b7%9a-%e0%b6%bd%e0%b6%b8%e0%b7%90%e0%b6%af/
+https://www.sinhalasongbook.com/mage-samarum-%e0%b6%b8%e0%b7%8f%e0%b6%9c%e0%b7%9a-%e0%b7%83%e0%b7%90%e0%b6%b8%e0%b6%bb%e0%b7%94%e0%b6%b8%e0%b7%8a/
+https://www.sinhalasongbook.com/malsara-hinawa-%e0%b6%b8%e0%b6%bd%e0%b7%8a%e0%b7%83%e0%b6%bb-%e0%b7%84%e0%b7%92%e0%b6%b1%e0%b7%8f%e0%b7%80/
+https://www.sinhalasongbook.com/mata-wasana/
+
+# ------------------------------------------------------------------------------
+# ROOKANTHA GUNATHILAKA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adara-mage-jesuni-%e0%b6%86%e0%b6%af%e0%b6%bb-%e0%b6%b8%e0%b6%9c%e0%b7%99-%e0%b6%a2%e0%b7%9a%e0%b7%83%e0%b7%94%e0%b6%b1%e0%b7%93/
+https://www.sinhalasongbook.com/ananthayak-wee-obe/
+https://www.sinhalasongbook.com/anatha-maruthe-%e0%b6%85%e0%b6%b1%e0%b7%8f%e0%b6%ad-%e0%b6%b8%e0%b7%8f%e0%b6%bb%e0%b7%94%e0%b6%ad%e0%b7%9a/
+https://www.sinhalasongbook.com/anganawo-%e0%b6%85%e0%b6%82%e0%b6%9c%e0%b6%b1%e0%b7%8f%e0%b7%80%e0%b7%9d/
+https://www.sinhalasongbook.com/as-deka-piyana-%e0%b6%87%e0%b7%83%e0%b7%8a-%e0%b6%af%e0%b7%99%e0%b6%9a-%e0%b6%b4%e0%b7%92%e0%b6%ba%e0%b7%8f%e0%b6%b1/
+https://www.sinhalasongbook.com/bambara-pahasa/
+https://www.sinhalasongbook.com/bol-pini-wahena/
+https://www.sinhalasongbook.com/dasama-riddana/
+https://www.sinhalasongbook.com/dawasak-da-handawaka/
+https://www.sinhalasongbook.com/dedunu-patai/
+https://www.sinhalasongbook.com/duppathkama-vina/
+https://www.sinhalasongbook.com/hitha-navathuna-thana/
+https://www.sinhalasongbook.com/indunil-gangulal/
+https://www.sinhalasongbook.com/kandulu-bindak/
+https://www.sinhalasongbook.com/lande-mulawee/
+https://www.sinhalasongbook.com/manalolee-manamaliye/
+https://www.sinhalasongbook.com/mata-mulu-lowama/
+https://www.sinhalasongbook.com/me-diganthaye/
+https://www.sinhalasongbook.com/muthu-keta-watena/
+https://www.sinhalasongbook.com/nage-naganna/
+https://www.sinhalasongbook.com/nihanda-mawathe/
+https://www.sinhalasongbook.com/nil-tharu-nethu/
+https://www.sinhalasongbook.com/raa-pura/
+https://www.sinhalasongbook.com/sanda-basa-giya-thana/
+https://www.sinhalasongbook.com/sanda-pahan/
+https://www.sinhalasongbook.com/sanda-pana-wage/
+https://www.sinhalasongbook.com/sanda-pini-diye/
+https://www.sinhalasongbook.com/sanda-pini-diye-2/
+https://www.sinhalasongbook.com/sande-oba/
+https://www.sinhalasongbook.com/senehe-bandee-eda/
+https://www.sinhalasongbook.com/sithin-sina-sisee/
+https://www.sinhalasongbook.com/siyumalee/
+https://www.sinhalasongbook.com/suwanda-danee/
+https://www.sinhalasongbook.com/suwanda-dena-mal/
+https://www.sinhalasongbook.com/ukulata-nawath-%e0%b6%8b%e0%b6%9a%e0%b7%94%e0%b6%bd%e0%b6%a7-%e0%b6%b1%e0%b7%8f%e0%b7%80%e0%b6%ad%e0%b7%8a/
+https://www.sinhalasongbook.com/ulath-ekai/
+
+# ------------------------------------------------------------------------------
+# SAMAN DE SILVA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ammapa-mage/
+https://www.sinhalasongbook.com/chandiya-wela/
+https://www.sinhalasongbook.com/dewlowa-deviyane/
+https://www.sinhalasongbook.com/handawala-hithak/
+https://www.sinhalasongbook.com/irin-josaphin/
+https://www.sinhalasongbook.com/niyare-piya-nagala-%e0%b6%b1%e0%b7%92%e0%b6%ba%e0%b6%bb%e0%b7%9a-%e0%b6%b4%e0%b7%92%e0%b6%ba-%e0%b6%b1%e0%b6%9c%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/nurse-nona/
+https://www.sinhalasongbook.com/pinibara-seetha-yame/
+https://www.sinhalasongbook.com/ran-rasa-wage/
+https://www.sinhalasongbook.com/ruwal-nawen/
+https://www.sinhalasongbook.com/santhosha-wenna/
+https://www.sinhalasongbook.com/thana-nilla-dige/
+
+# ------------------------------------------------------------------------------
+# SANATH NANDASIRI
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adara-samarum/
+https://www.sinhalasongbook.com/atha-epita-gammanen/
+https://www.sinhalasongbook.com/dangakara-oya-dasa/
+https://www.sinhalasongbook.com/dedunne-pata-patin/
+https://www.sinhalasongbook.com/du-anuradha/
+https://www.sinhalasongbook.com/duleeka/
+https://www.sinhalasongbook.com/eda-meda-thura/
+https://www.sinhalasongbook.com/eka-yayata/
+https://www.sinhalasongbook.com/game-kopi-kade/
+https://www.sinhalasongbook.com/ganga-jale/
+https://www.sinhalasongbook.com/hichchi-nage/
+https://www.sinhalasongbook.com/koho-koho/
+https://www.sinhalasongbook.com/lassana-nam/
+https://www.sinhalasongbook.com/mage-ratata/
+https://www.sinhalasongbook.com/mama-nam-asayi/
+https://www.sinhalasongbook.com/me-prathama-wasanthayayi/
+https://www.sinhalasongbook.com/mulu-lowa-magen/
+https://www.sinhalasongbook.com/nube-suwanda-pirunu/
+https://www.sinhalasongbook.com/pemathura-hangum/
+https://www.sinhalasongbook.com/seetha-ra-washathe/
+https://www.sinhalasongbook.com/sowin-piri-mage/
+https://www.sinhalasongbook.com/vikasitha-watha-kamale/
+https://www.sinhalasongbook.com/waradak-kalath/
+
+# ------------------------------------------------------------------------------
+# SANUKA WICKRAMASINGHE
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/kowulange-mihiri/
+https://www.sinhalasongbook.com/sansara-sihine/
+https://www.sinhalasongbook.com/saragaye/
+
+# ------------------------------------------------------------------------------
+# SATHISH PERERA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/awasan-liyumai-%e0%b6%85%e0%b7%80%e0%b7%83%e0%b6%b1%e0%b7%8a-%e0%b6%bd%e0%b7%92%e0%b6%ba%e0%b7%94%e0%b6%b8%e0%b6%ba%e0%b7%92/
+https://www.sinhalasongbook.com/maha-muhudu-%e0%b6%b8%e0%b7%84-%e0%b6%b8%e0%b7%94%e0%b7%84%e0%b7%94%e0%b6%af%e0%b7%94-%e0%b7%80%e0%b7%92%e0%b6%b8%e0%b7%8f%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/mee-pani-dee/
+https://www.sinhalasongbook.com/mihirathi-wasantha-kale/
+
+# ------------------------------------------------------------------------------
+# SENAKA BATAGODA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/alu-yata-gini/
+https://www.sinhalasongbook.com/ananthayata-yanawamai/
+https://www.sinhalasongbook.com/api-kawuruda-2/
+https://www.sinhalasongbook.com/api-sensasille/
+https://www.sinhalasongbook.com/heena-walata-panak/
+https://www.sinhalasongbook.com/nidi-nethi-reya/
+https://www.sinhalasongbook.com/sanasennam-ma/
+
+# ------------------------------------------------------------------------------
+# SUNIL EDIRISINGHE
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ada-deegeka/
+https://www.sinhalasongbook.com/ahasa-polawa/
+https://www.sinhalasongbook.com/ahasai-oba-mata/
+https://www.sinhalasongbook.com/asuweda-kaurun-ho/
+https://www.sinhalasongbook.com/awapasa-ahasaka/
+https://www.sinhalasongbook.com/chandra-madala/
+https://www.sinhalasongbook.com/chandra-mandale/
+https://www.sinhalasongbook.com/devani-budun-lesa/
+https://www.sinhalasongbook.com/devole-nokalal/
+https://www.sinhalasongbook.com/dewedi-dennata/
+https://www.sinhalasongbook.com/duwe-numba-mage/
+https://www.sinhalasongbook.com/eka-yaye-kaka/
+https://www.sinhalasongbook.com/epa-yali-hamuwanna/
+https://www.sinhalasongbook.com/hada-parana-rudu/
+https://www.sinhalasongbook.com/hade-kothanaka/
+https://www.sinhalasongbook.com/handana-pana-nala/
+https://www.sinhalasongbook.com/hindivi-kothanaka/
+https://www.sinhalasongbook.com/hise-gini-awilethe/
+https://www.sinhalasongbook.com/kale-pan-etha/
+https://www.sinhalasongbook.com/kandulu-denna/
+https://www.sinhalasongbook.com/kawurunda-oba-mage/
+https://www.sinhalasongbook.com/kuda-game-maddahane/
+https://www.sinhalasongbook.com/lenchina/
+https://www.sinhalasongbook.com/ma-ithin-yanna/
+https://www.sinhalasongbook.com/mage-amal-biso/
+https://www.sinhalasongbook.com/mage-senehasa/
+https://www.sinhalasongbook.com/malliye-naraka-mithuran-%e0%b6%b8%e0%b6%bd%e0%b7%8a%e0%b6%bd%e0%b7%92%e0%b6%ba%e0%b7%99-%e0%b6%b1%e0%b6%bb%e0%b6%9a-%e0%b6%b8%e0%b7%92%e0%b6%ad%e0%b7%94%e0%b6%bb%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/me-tharam-siyumalida/
+https://www.sinhalasongbook.com/minisa-suwandayi/
+https://www.sinhalasongbook.com/miniseku-pita-nagi/
+https://www.sinhalasongbook.com/nidukanane/
+https://www.sinhalasongbook.com/nim-therak/
+https://www.sinhalasongbook.com/nube-sithata/
+https://www.sinhalasongbook.com/palanchiye-lee/
+https://www.sinhalasongbook.com/pana-mada-kadithi/
+https://www.sinhalasongbook.com/pata-dedunu/
+https://www.sinhalasongbook.com/pinibara-yame/
+https://www.sinhalasongbook.com/pura-poya-handata/
+https://www.sinhalasongbook.com/ra-weda-muraya/
+https://www.sinhalasongbook.com/ran-malak-lesa/
+
+# ------------------------------------------------------------------------------
+# T. M. JAYARATHNA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/ae-neela-nethu-%e0%b6%88-%e0%b6%b1%e0%b7%93%e0%b6%bd-%e0%b6%b1%e0%b7%99%e0%b6%ad%e0%b7%94-%e0%b7%83%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/amathaka-wenne-na/
+https://www.sinhalasongbook.com/amma-sandaki-%e0%b6%85%e0%b6%b8%e0%b7%8a%e0%b6%b8%e0%b7%8f-%e0%b7%83%e0%b6%b3%e0%b6%9a%e0%b7%92/
+https://www.sinhalasongbook.com/anduru-kutiya-thula-%e0%b6%85%e0%b6%af%e0%b7%94%e0%b6%bb%e0%b7%94-%e0%b6%9a%e0%b7%94%e0%b6%a7%e0%b7%92%e0%b6%ba-%e0%b6%ad%e0%b7%94%e0%b6%bd/
+https://www.sinhalasongbook.com/apa-hamuwuwath/
+https://www.sinhalasongbook.com/chandikamata-randuwak-%e0%b6%a0%e0%b6%b1%e0%b7%8a%e0%b6%a9%e0%b7%92%e0%b6%9a%e0%b6%b8%e0%b6%a7/
+https://www.sinhalasongbook.com/dayiwaye-%e0%b6%af%e0%b7%9b%e0%b7%80%e0%b6%ba%e0%b7%9a-%e0%b7%83%e0%b7%94%e0%b7%85%e0%b7%92-%e0%b7%83%e0%b7%94%e0%b7%85%e0%b6%9c%e0%b7%9a/
+https://www.sinhalasongbook.com/degoda-thala-%e0%b6%af%e0%b7%99%e0%b6%9c%e0%b7%9c%e0%b6%a9-%e0%b6%ad%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/eka-sitha-dethanaka-%e0%b6%91%e0%b6%9a-%e0%b7%83%e0%b7%92%e0%b6%ad-%e0%b6%af%e0%b7%99%e0%b6%ad%e0%b7%90%e0%b6%b1%e0%b6%9a/
+https://www.sinhalasongbook.com/hadissiye-%e0%b7%84%e0%b6%af%e0%b7%92%e0%b7%83%e0%b7%8a%e0%b7%83%e0%b7%92%e0%b6%ba%e0%b7%9a/
+https://www.sinhalasongbook.com/hemin-sare-%e0%b7%84%e0%b7%99%e0%b6%b8%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b7%83%e0%b7%90%e0%b6%bb%e0%b7%9a/
+https://www.sinhalasongbook.com/hiruta-horen-%e0%b7%84%e0%b7%92%e0%b6%bb%e0%b7%94%e0%b6%a7-%e0%b7%84%e0%b7%9c%e0%b6%bb%e0%b7%99%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/jeewithe-amadhara-%e0%b6%a2%e0%b7%93%e0%b7%80%e0%b7%92%e0%b6%ad%e0%b7%9a-%e0%b6%85%e0%b6%b8%e0%b6%b0%e0%b7%8f%e0%b6%bb%e0%b7%8f/
+https://www.sinhalasongbook.com/ko-ma-pathu-%e0%b6%9a%e0%b7%9d-%e0%b6%b8%e0%b7%8f-%e0%b6%b4%e0%b7%90%e0%b6%ad%e0%b7%96/
+https://www.sinhalasongbook.com/kunda-saman-%e0%b6%9a%e0%b7%94%e0%b6%b1%e0%b7%8a%e0%b6%af-%e0%b7%83%e0%b6%b8%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/lokaye-rudu-%e0%b6%bd%e0%b7%9d%e0%b6%9a%e0%b6%ba%e0%b7%9a-%e0%b6%bb%e0%b7%94%e0%b6%af%e0%b7%94-%e0%b6%b1%e0%b7%99%e0%b6%ad%e0%b7%8a/
+https://www.sinhalasongbook.com/mala-gira-gela-%e0%b6%b8%e0%b7%8f%e0%b6%bd-%e0%b6%9c%e0%b7%92%e0%b6%bb%e0%b7%8f-%e0%b6%9c%e0%b7%99%e0%b6%bd/
+https://www.sinhalasongbook.com/ayurin-api-%e0%b6%b8%e0%b7%9a-%e0%b6%85%e0%b6%ba%e0%b7%94%e0%b6%bb%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%85%e0%b6%b4%e0%b7%92/
+https://www.sinhalasongbook.com/mulu-lowama-%e0%b6%b8%e0%b7%94%e0%b6%bd%e0%b7%94-%e0%b6%bd%e0%b7%9c%e0%b7%80%e0%b6%b8/
+https://www.sinhalasongbook.com/namal-pipila-%e0%b6%b1%e0%b7%8f%e0%b6%b8%e0%b6%bd%e0%b7%8a-%e0%b6%b4%e0%b7%92%e0%b6%b4%e0%b7%92%e0%b6%bd%e0%b7%8f/
+https://www.sinhalasongbook.com/oba-ha-mema-%e0%b6%94%e0%b6%b6-%e0%b7%84%e0%b7%8f-%e0%b6%b8%e0%b7%99%e0%b6%b8%e0%b7%8f/
+https://www.sinhalasongbook.com/pawanata-salena-%e0%b6%b4%e0%b7%80%e0%b6%b1%e0%b6%a7-%e0%b7%83%e0%b7%90%e0%b6%bd%e0%b7%99%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/rathriya-uda-una-%e0%b6%bb%e0%b7%8f%e0%b6%ad%e0%b7%8a%e2%80%8d%e0%b6%bb%e0%b7%92%e0%b6%ba-%e0%b6%8b%e0%b6%af%e0%b7%8f-%e0%b6%8b%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/raththaran-neth-%e0%b6%bb%e0%b6%ad%e0%b7%8a%e0%b6%ad%e0%b6%bb%e0%b6%b1%e0%b7%8a-%e0%b6%b1%e0%b7%99%e0%b6%ad%e0%b7%8a/
+https://www.sinhalasongbook.com/ruwata-ruwe-%e0%b6%bb%e0%b7%94%e0%b7%80%e0%b6%a7-%e0%b6%bb%e0%b7%94%e0%b7%80%e0%b7%9a/
+https://www.sinhalasongbook.com/sanasum-susuman-%e0%b7%83%e0%b7%90%e0%b6%b1%e0%b7%83%e0%b7%94%e0%b6%b8%e0%b7%8a-%e0%b7%83%e0%b7%94%e0%b7%83%e0%b7%94%e0%b6%b8%e0%b6%b1%e0%b7%8a/
+https://www.sinhalasongbook.com/sanda-wathurak-se/
+https://www.sinhalasongbook.com/seegiri-landune-%e0%b7%83%e0%b7%93%e0%b6%9c%e0%b7%92%e0%b6%bb%e0%b7%92-%e0%b6%bd%e0%b6%b3%e0%b7%94%e0%b6%b1%e0%b7%9a/
+https://www.sinhalasongbook.com/sithata-danena-%e0%b7%83%e0%b7%92%e0%b6%ad%e0%b6%a7-%e0%b6%af%e0%b7%90%e0%b6%b1%e0%b7%99%e0%b6%b1-%e0%b6%b8%e0%b7%9a/
+https://www.sinhalasongbook.com/sithn-ma-nosali-%e0%b7%83%e0%b7%92%e0%b6%ad%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%b8%e0%b7%8f-%e0%b6%b1%e0%b7%9c%e0%b7%83%e0%b7%90%e0%b6%bd%e0%b7%93/
+https://www.sinhalasongbook.com/sonduru-atheethaye-%e0%b7%83%e0%b7%9c%e0%b6%b3%e0%b7%94%e0%b6%bb%e0%b7%94-%e0%b6%85%e0%b6%ad%e0%b7%93%e0%b6%ad%e0%b6%ba%e0%b7%9a/
+https://www.sinhalasongbook.com/sovin-bara-%e0%b7%83%e0%b7%9c%e0%b7%80%e0%b7%92%e0%b6%b1%e0%b7%8a-%e0%b6%b6%e0%b6%bb/
+https://www.sinhalasongbook.com/wala-theerayen-%e0%b7%80%e0%b7%85%e0%b7%8f-%e0%b6%ad%e0%b7%93%e0%b6%bb%e0%b6%ba%e0%b7%99%e0%b6%b1%e0%b7%8a/
+
+# ------------------------------------------------------------------------------
+# VICTOR RATHNAYAKA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adara-gangulehi/
+https://www.sinhalasongbook.com/adaraye-ulpatha-wu/
+https://www.sinhalasongbook.com/adawan-desin/
+https://www.sinhalasongbook.com/ama-dahara/
+https://www.sinhalasongbook.com/amma-nathi-mata/
+https://www.sinhalasongbook.com/andura-bidinnata/
+https://www.sinhalasongbook.com/api-athata-athata/
+https://www.sinhalasongbook.com/api-hangum-walata-%e0%b6%85%e0%b6%b4%e0%b7%92-%e0%b7%84%e0%b7%90%e0%b6%9f%e0%b7%94%e0%b6%b8%e0%b7%8a-%e0%b7%80%e0%b6%bd%e0%b6%a7/
+https://www.sinhalasongbook.com/api-okkoma-rajawaru/
+https://www.sinhalasongbook.com/arunalu-athirena/
+https://www.sinhalasongbook.com/asha-nirasha-mawu/
+https://www.sinhalasongbook.com/budu-hamuduruwo/
+https://www.sinhalasongbook.com/daiwayogayakin/
+https://www.sinhalasongbook.com/detholaga-sinaha/
+https://www.sinhalasongbook.com/dewram-wehere/
+https://www.sinhalasongbook.com/dineka-hiru-basa/
+https://www.sinhalasongbook.com/eka-kudayak-yata/
+https://www.sinhalasongbook.com/gaha-kola-mal/
+https://www.sinhalasongbook.com/gigiri-geetha-rawe/
+https://www.sinhalasongbook.com/hinahenna-romio/
+https://www.sinhalasongbook.com/hitha-gawa-danga-kala/
+https://www.sinhalasongbook.com/hitha-mithuru-sulanga/
+https://www.sinhalasongbook.com/kandulu-pan-kendiyak/
+https://www.sinhalasongbook.com/kohe-sita-oba/
+https://www.sinhalasongbook.com/koheda-koheda/
+https://www.sinhalasongbook.com/mal-pokuru-pokuru/
+https://www.sinhalasongbook.com/malaniye-indrajalaya/
+https://www.sinhalasongbook.com/miyury-kalapana/
+https://www.sinhalasongbook.com/mohen-mula-wela/
+https://www.sinhalasongbook.com/muwa-wuna-sandak/
+https://www.sinhalasongbook.com/neela-bingu-kela/
+https://www.sinhalasongbook.com/numbe-namin-ma-duk-wee/
+https://www.sinhalasongbook.com/pawe-wala/
+https://www.sinhalasongbook.com/pem-rasa-wehena/
+https://www.sinhalasongbook.com/pembara-madhu/
+https://www.sinhalasongbook.com/rukada-madu-yaga/
+https://www.sinhalasongbook.com/sanda-hiru-tharu/
+https://www.sinhalasongbook.com/sanda-kan-wasila/
+https://www.sinhalasongbook.com/sandata-ahasa/
+https://www.sinhalasongbook.com/sangawa-ganu-mana/
+
+# ------------------------------------------------------------------------------
+# W. D. AMARADEVA
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/adara-hangum/
+https://www.sinhalasongbook.com/adawan-wu/
+https://www.sinhalasongbook.com/anothaththa-vila/
+https://www.sinhalasongbook.com/aradhana-%e0%b6%86%e0%b6%bb%e0%b7%8f%e0%b6%b0%e0%b6%b1%e0%b7%8f/
+https://www.sinhalasongbook.com/bambareku-awai/
+https://www.sinhalasongbook.com/danno-budunge/
+https://www.sinhalasongbook.com/dathe-elli/
+https://www.sinhalasongbook.com/etha-kandukara/
+https://www.sinhalasongbook.com/gilem-obe-guna/
+https://www.sinhalasongbook.com/giman-harina/
+https://www.sinhalasongbook.com/hanthana-sihine/
+https://www.sinhalasongbook.com/hanthane-kandu-muduna/
+https://www.sinhalasongbook.com/jagan-mohini-%e0%b6%a2%e0%b6%9c%e0%b6%b1%e0%b7%8a-%e0%b6%b8%e0%b7%9d%e0%b7%84%e0%b7%92%e0%b6%b1%e0%b7%93/
+https://www.sinhalasongbook.com/kale-gahaka/
+https://www.sinhalasongbook.com/kandulu-kathawe/
+https://www.sinhalasongbook.com/kandulu-kiri-powa/
+https://www.sinhalasongbook.com/karadara-podi-benda/
+https://www.sinhalasongbook.com/kolom-thota/
+https://www.sinhalasongbook.com/ma-mala-pasu/
+
+# ------------------------------------------------------------------------------
+# WAYO
+# ------------------------------------------------------------------------------
+https://www.sinhalasongbook.com/api-kawuruda/
