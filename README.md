@@ -80,3 +80,7 @@ npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to launch **Naada**.
+
+---
+
+Crafted with ❤️ by **Elio Dredd** for Sri Lankan music lovers worldwide.

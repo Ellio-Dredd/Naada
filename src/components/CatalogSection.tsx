@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Song } from '@/types';
-import { Search, Music, Disc3, Play, Sparkles, Filter, ChevronLeft, ChevronRight, X, ArrowUpDown } from 'lucide-react';
+import { Search, Music, Play, Sparkles, ChevronLeft, ChevronRight, X, ArrowUpDown } from 'lucide-react';
 import { getCapoAdvice } from '@/lib/chordpro';
 import { CatalogSkeleton } from '@/components/CatalogSkeleton';
 
@@ -13,6 +13,7 @@ interface CatalogSectionProps {
   initialSearchQuery?: string;
   onClearInitialSearch?: () => void;
   isLoading?: boolean;
+  useSinglish?: boolean;
 }
 
 const PAGE_SIZE = 18;
@@ -26,6 +27,7 @@ export function CatalogSection({
   initialSearchQuery = '',
   onClearInitialSearch,
   isLoading = false,
+  useSinglish = false,
 }: CatalogSectionProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [selectedLetter, setSelectedLetter] = useState<string>('All');
@@ -139,7 +141,9 @@ export function CatalogSection({
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-tight">
             Sinhala Song Catalog{' '}
-            <span className="text-purple-600 font-sinhala font-bold">ගීත එකතුව</span>
+            <span className="text-purple-600 font-sinhala font-bold">
+              {useSinglish ? 'Song Collection' : 'ගීත එකතුව'}
+            </span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
             Tap any song to view chords with instant key transpose and smart auto-scrolling.
@@ -205,7 +209,7 @@ export function CatalogSection({
         })}
       </div>
 
-      {/* Alphabet Quick Jump Bar (for rapid navigation through 500+ songs) */}
+      {/* Alphabet Quick Jump Bar */}
       <div className="flex items-center gap-1 overflow-x-auto pb-4 mb-6 scrollbar-none text-[11px] font-mono font-medium">
         <span className="text-slate-400 uppercase text-[10px] mr-1 flex-shrink-0">Jump:</span>
         {ALPHABET_LIST.map((letter) => {
@@ -263,7 +267,7 @@ export function CatalogSection({
           </button>
         </div>
       ) : (
-        /* 500+ Responsive Song Cards Grid with Smooth Micro-Interactions */
+        /* 500+ Responsive Song Cards Grid */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 animate-slide-up">
           {paginatedSongs.map((song) => {
             const isActive = song.id === currentSongId;
@@ -285,25 +289,24 @@ export function CatalogSection({
                     <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 transition-colors group-hover:bg-purple-200">
                       Key {song.key}
                     </span>
-
                     <span className="font-mono text-[11px] text-slate-400">
                       {song.tempo_bpm} BPM
                     </span>
                   </div>
 
-                  {/* Song Title (Noto Sans Sinhala) */}
+                  {/* Song Title — switches between Sinhala and English based on toggle */}
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-purple-900 transition-colors font-sinhala leading-snug">
-                    {song.title_si}
+                    {useSinglish ? song.title_en : song.title_si}
                   </h3>
                   <p className="text-xs text-slate-600 font-medium mt-0.5 line-clamp-1">
                     {song.artist}{' '}
                     <span className="text-slate-400 font-mono text-[11px]">
-                      • {song.title_en}
+                      • {useSinglish ? song.title_si : song.title_en}
                     </span>
                   </p>
                 </div>
 
-                {/* Card Footer: Play Chords Button */}
+                {/* Card Footer */}
                 <div className="pt-3 mt-3 border-t border-purple-50 flex items-center justify-between text-xs">
                   {capoAdvice.capoFret > 0 ? (
                     <span className="text-[11px] text-purple-600 font-medium truncate">
@@ -337,26 +340,15 @@ export function CatalogSection({
             <span>Previous</span>
           </button>
 
-          {/* Quick Page Jump Numbers */}
           <div className="hidden sm:flex items-center gap-1">
             {Array.from({ length: totalPages }, (_, i) => i + 1)
-              .filter((page) => {
-                // Show first, last, and window around current page
-                return (
-                  page === 1 ||
-                  page === totalPages ||
-                  Math.abs(page - currentPage) <= 1
-                );
-              })
+              .filter((page) => page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1)
               .map((page, idx, arr) => {
                 const prev = arr[idx - 1];
                 const showEllipsis = prev && page - prev > 1;
-
                 return (
                   <React.Fragment key={page}>
-                    {showEllipsis && (
-                      <span className="text-slate-400 text-xs px-1">...</span>
-                    )}
+                    {showEllipsis && <span className="text-slate-400 text-xs px-1">...</span>}
                     <button
                       type="button"
                       onClick={() => setCurrentPage(page)}

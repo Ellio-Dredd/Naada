@@ -10,6 +10,7 @@ interface HeroSectionProps {
   onScrollToCatalog: () => void;
   activeSongTitle?: string;
   onOpenActiveSong?: () => void;
+  useSinglish?: boolean;
 }
 
 export function HeroSection({
@@ -18,6 +19,7 @@ export function HeroSection({
   onScrollToCatalog,
   activeSongTitle,
   onOpenActiveSong,
+  useSinglish = false,
 }: HeroSectionProps) {
   return (
     <section className="relative pt-10 pb-12 sm:pt-16 sm:pb-16 text-center px-4 overflow-hidden">
@@ -28,14 +30,14 @@ export function HeroSection({
         {/* Simple Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-100 text-purple-700 text-xs font-medium shadow-2xs">
           <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-          <span>500+ Sinhala Guitar Chords & Lyrics</span>
+          <span>500+ Sinhala Guitar Chords &amp; Lyrics</span>
         </div>
 
         {/* Clean Headline */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-tight">
-          සොයන්න. වයන්න.{' '}
+          {useSinglish ? 'Search. Strum.' : 'සොයන්න. වයන්න.'}{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-violet-600 font-sinhala">
-            ගයන්න.
+            {useSinglish ? 'Sing.' : 'ගයන්න.'}
           </span>
         </h1>
 

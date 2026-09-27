@@ -196,9 +196,11 @@ export default function HomePage() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         activeTab={activeTab}
-        activeSongTitle={currentSong.title_si}
+        activeSongTitle={useSinglish ? currentSong.title_en : currentSong.title_si}
         roomCode={roomCode}
         connectedCount={connectedCount}
+        useSinglish={useSinglish}
+        onToggleSinglish={() => setUseSinglish((prev) => !prev)}
       />
 
       {/* Realtime Synced Jam Room Indicator Banner */}
@@ -240,11 +242,12 @@ export default function HomePage() {
               const el = document.getElementById('catalog-section');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            activeSongTitle={currentSong.title_si}
+            activeSongTitle={useSinglish ? currentSong.title_en : currentSong.title_si}
             onOpenActiveSong={() => {
               setActiveTab('sheet');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            useSinglish={useSinglish}
           />
 
           {/* 500+ Scaled Song Catalog with Search, Filters, A-Z Jump & Pagination */}
@@ -255,6 +258,7 @@ export default function HomePage() {
             initialSearchQuery={heroSearchQuery}
             onClearInitialSearch={() => setHeroSearchQuery('')}
             isLoading={isLoadingSongs}
+            useSinglish={useSinglish}
           />
 
           {/* Floating Pill if Song is Loaded in Memory */}
@@ -267,7 +271,7 @@ export default function HomePage() {
               className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-purple-900/90 text-white text-xs font-semibold backdrop-blur-xl shadow-xl hover:bg-purple-950 transition-all hover:scale-105 active:scale-95 border border-purple-400/30"
             >
               <Music className="w-3.5 h-3.5 text-purple-300 animate-pulse" />
-              <span>Playing: <strong>{currentSong.title_si}</strong> ({currentSong.key})</span>
+              <span>Playing: <strong>{useSinglish ? currentSong.title_en : currentSong.title_si}</strong> ({currentSong.key})</span>
               <ChevronRight className="w-3.5 h-3.5 text-purple-300" />
             </button>
           </div>
@@ -337,6 +341,7 @@ export default function HomePage() {
         onSelectSong={handleSelectSong}
         onOpenPaduru={() => setIsPaduruOpen(true)}
         onOpenSubmit={() => setIsSubmitOpen(true)}
+        useSinglish={useSinglish}
       />
 
       {/* Search Modal (Cmd+K) */}
